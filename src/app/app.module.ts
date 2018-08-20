@@ -10,10 +10,12 @@ import { AuthComponent } from './auth/auth.component';
 import {FormsModule} from "@angular/forms";
 import {StatutConnecteService} from "./auth/statut-connecte.service";
 import {AuthInterceptorService} from "./auth/auth-interceptor.service";
+import { ReserverComponent } from './reserver/reserver.component';
 
 const routes: Routes = [
   { path:'tech', component: TechComponent, canActivate:[StatutConnecteService]},
   { path:'auth', component: AuthComponent},
+  { path:'reserver', component: ReserverComponent},
   { path: '', redirectTo: '/tech', pathMatch: 'full'}
 ];
 
@@ -22,7 +24,8 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     TechComponent,
-    AuthComponent
+    AuthComponent,
+    ReserverComponent
   ],
   imports: [
     BrowserModule,
