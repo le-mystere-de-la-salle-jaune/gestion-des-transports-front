@@ -23,10 +23,13 @@ import {Collegue} from "./auth/auth.domains";
   `,
   styles: []
 })
+
+
 export class AppComponent implements OnInit {
 
   collegueConnecte:Observable<Collegue>;
 
+  
   constructor(private _authSrv:AuthService, private _router:Router) {
 
   }

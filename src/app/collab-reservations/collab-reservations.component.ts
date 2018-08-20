@@ -17,4 +17,5 @@ export class CollabReservationsComponent implements OnInit {
   ngOnInit() {
   }
 
+  
 }

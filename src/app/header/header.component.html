@@ -1,25 +1,19 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">
-    <img src="https://www.economie.gouv.fr/files/styles/articles_vous_orienter/public/covoiturage_2_910.png?itok=RDGwowZc" width="30"
-      height="30" alt="Logo">
-  </a>
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-    aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="nav navbar-nav mr-auto" routerLinkActive="active">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/collaborateur/reservations/">Résevation</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/collaborateur/annonces/">Annonces</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/collaborateur/statistiques">Statistiques</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-light bg-light" *ngIf="isAuth">
+  <mdb-navbar-brand>
+    <a class="navbar-brand" href="#">
+      <img src="assets/img/vroumvroumlesvoitures-logo.png" width="100" alt="Logo">
+    </a>
+  </mdb-navbar-brand>
+  <links>
+       <ul class="nav navbar-nav mr-auto" routerLinkActive="active">
+          <li class="nav-item">
+              <a class="nav-link waves-light" routerLink="/collaborateur/reservations/" mdbWavesEffect>Mes résevations</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link waves-light" routerLink="/collaborateur/annonces/" mdbWavesEffect>Mes annonces</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link waves-light" routerLink="/collaborateur/statistiques" mdbWavesEffect>Statistiques</a>
+      </ul>
+  </links>
+</mdb-navbar>

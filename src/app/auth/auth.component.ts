@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Collegue} from "./auth.domains";
 import {AuthService} from "./auth.service";
 import {Router} from "@angular/router";
+import { Key } from 'protractor';
 
 /**
  * Formulaire d'authentification.
@@ -77,6 +78,8 @@ export class AuthComponent implements OnInit {
         // en cas d'erreur, affichage d'un message d'erreur
         err =>this.err = true
       );
+       // enregistrement dans le session storage
+       sessionStorage.setItem('email', this.collegue.email);
   }
 
 }
