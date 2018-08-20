@@ -10,10 +10,15 @@ import { AuthComponent } from './auth/auth.component';
 import {FormsModule} from "@angular/forms";
 import {StatutConnecteService} from "./auth/statut-connecte.service";
 import {AuthInterceptorService} from "./auth/auth-interceptor.service";
+import { PublierAnnonceComponent } from './publier-annonce/publier-annonce.component';
+import { AjoutItineraireComponent } from './ajout-itineraire/ajout-itineraire.component';
+import { AjoutVehiculeComponent } from './ajout-vehicule/ajout-vehicule.component';
+import { AjoutDateComponent } from './ajout-date/ajout-date.component';
 
 const routes: Routes = [
   { path:'tech', component: TechComponent, canActivate:[StatutConnecteService]},
   { path:'auth', component: AuthComponent},
+  { path: 'collaborateur/annonces/creer', component: PublierAnnonceComponent},
   { path: '', redirectTo: '/tech', pathMatch: 'full'}
 ];
 
@@ -22,7 +27,11 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     TechComponent,
-    AuthComponent
+    AuthComponent,
+    PublierAnnonceComponent,
+    AjoutItineraireComponent,
+    AjoutVehiculeComponent,
+    AjoutDateComponent
   ],
   imports: [
     BrowserModule,
