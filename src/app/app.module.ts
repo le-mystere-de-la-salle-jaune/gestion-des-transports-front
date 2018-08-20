@@ -18,9 +18,9 @@ import { CollabStatistiquesComponent } from './collab-statistiques/collab-statis
 const routes: Routes = [
   { path:'tech', component: TechComponent, canActivate:[StatutConnecteService]},
   { path:'auth', component: AuthComponent},
-  { path: 'reservations', component: CollabReservationsComponent},
-  { path: 'annonces', component: CollabAnnoncesComponent},
-  { path: 'statistiques', component: CollabStatistiquesComponent},
+  { path: 'collaborateur/reservations', component: CollabReservationsComponent},
+  { path: 'collaborateur/annonces', component: CollabAnnoncesComponent},
+  { path: 'collaborateur/statistiques', component: CollabStatistiquesComponent},
   { path: '', redirectTo: '/tech', pathMatch: 'full'}
 ];
 
