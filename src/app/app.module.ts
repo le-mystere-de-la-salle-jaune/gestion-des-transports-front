@@ -11,6 +11,7 @@ import {FormsModule} from "@angular/forms";
 import {StatutConnecteService} from "./auth/statut-connecte.service";
 import {AuthInterceptorService} from "./auth/auth-interceptor.service";
 import { ReserverComponent } from './reserver/reserver.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 const routes: Routes = [
   { path:'tech', component: TechComponent, canActivate:[StatutConnecteService]},
@@ -39,6 +40,7 @@ const routes: Routes = [
     useClass: AuthInterceptorService,
     multi: true
   }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent], 
+  schemas: [NO_ERRORS_SCHEMA]
 })
 export class AppModule { }

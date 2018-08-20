@@ -4,16 +4,64 @@
         <th>Covoiturage</th>
     </tr>
 </table>
-<form>
-    <p>Critères</p>
-    <div class="form-group row">
-        <label for="depart" class="col-sm-2 col-form-label">Adresse de départ</label>
-        <div class="col-sm-2">
-            <input type="text" class="form-control" id="depart" placeholder="depart">
+<div class="jumbotron">
+    <form>
+        <p>Critères</p>
+        <div class="form-group row">
+            <label for="depart" class="col-sm-2 col-form-label">Adresse de départ</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="depart" placeholder="textDepart">
+            </div>
+            <label for="arriver" class="col-sm-2 col-form-label">Adresse de destination</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="arriver" placeholder="textArriver">
+            </div>
+            <label for="duree" class="col-sm-2 col-form-label">Durée du trajet</label>
+            <div class="col-sm-2">
+                <input type="text" readonly class="form-control" id="duree" placeholder="textDurer" value="x h xx mn">
+            </div>
         </div>
-        <label for="inputEmail3" class="col-sm-2 col-form-label">Adresse de destination</label>
-        <div class="col-sm-2">
-            <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+        <div class="form-group row">
+            <label for="dateDepart" class="col-sm-2 col-form-label">Date de départ</label>
+            <div class="col-sm-3">
+                <input type="date" class="form-control" id="dateDepart" placeholder="dateDepart">
+            </div>
+            <label for="distance" class="col-sm-2 col-form-label offset-md-3">Distance</label>
+            <div class="col-sm-2">
+                <input type="text" readonly class="form-control" id="distance" value="250km">
+            </div>
         </div>
+    </form>
+
+    <p (click)="test.toggle()" mdbWavesEffect>Covoiturages</p>
+    <div class="" [mdbCollapse]="isCollapsed" #test="bs-collapse">
+        <form>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Date/Heure</th>
+                        <th scope="col">Départ</th>
+                        <th scope="col">Destination</th>
+                        <th scope="col">Véhicule</th>
+                        <th scope="col">Chauffeur</th>
+                        <th scope="col">Place disponibles</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="row" class="align-middle">22/06/2017 12:30</td>
+                        <td scope="row" class="align-middle">Gare de Nantes</td>
+                        <td scope="row" class="align-middle">Gare de Saint-Nazaire</td>
+                        <td scope="row" class="align-middle">Audi A6</td>
+                        <td scope="row" class="align-middle">François GEORGES</td>
+                        <td scope="row" class="align-middle">1</td>
+                        <td scope="row">
+                            <input type="button" class="btn btn-primary" value="Réserver" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
     </div>
-</form>
+</div>

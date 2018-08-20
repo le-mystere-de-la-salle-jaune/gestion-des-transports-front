@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-reserver',
@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReserverComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild('test') test: any;
+
+  constructor() {
+  }
 
   ngOnInit() {
+    this.test.toggle();
   }
 
 }
