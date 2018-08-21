@@ -2,11 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-ajout-date',
-  template: `
-    <p>
-      ajout-date works!
-    </p>
-  `,
+  templateUrl: './ajout-date.component.html',
   styles: []
 })
 export class AjoutDateComponent implements OnInit {
