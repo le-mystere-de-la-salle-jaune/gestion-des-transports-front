@@ -5,37 +5,39 @@
     </tr>
 </table>
 <div class="jumbotron">
-    <form>
         <p>Critères</p>
+        
         <div class="form-group row">
             <label for="depart" class="col-sm-2 col-form-label">Adresse de départ</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" id="depart" placeholder="textDepart">
+                <input type="text" class="form-control" id="depart" [(ngModel)]="addressInput" (ngModelChange)="updateInput()">
             </div>
             <label for="arriver" class="col-sm-2 col-form-label">Adresse de destination</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" id="arriver" placeholder="textArriver">
+                <input type="text" class="form-control" id="arriver">
             </div>
             <label for="duree" class="col-sm-2 col-form-label">Durée du trajet</label>
             <div class="col-sm-2">
-                <input type="text" readonly class="form-control" id="duree" placeholder="textDurer" value="x h xx mn">
+                <input type="text" readonly class="form-control" id="duree" value="x h xx mn">
             </div>
         </div>
         <div class="form-group row">
             <label for="dateDepart" class="col-sm-2 col-form-label">Date de départ</label>
             <div class="col-sm-3">
-                <input type="date" class="form-control" id="dateDepart" placeholder="dateDepart">
+                <input type="date" class="form-control" id="dateDepart">
             </div>
             <label for="distance" class="col-sm-2 col-form-label offset-md-3">Distance</label>
             <div class="col-sm-2">
                 <input type="text" readonly class="form-control" id="distance" value="250km">
             </div>
         </div>
-    </form>
+        <button  (click)="selectVille()">test service</button>
+        Depart :
+            {{villeDepart}}
 
     <p (click)="test.toggle()" mdbWavesEffect>Covoiturages</p>
     <div class="" [mdbCollapse]="isCollapsed" #test="bs-collapse">
-        <form>
+        <form (ngSubmit)="submit()">
             <table class="table">
                 <thead>
                     <tr>
@@ -48,16 +50,19 @@
                         <th scope="col"></th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody *ngFor="let annonce of annonces">
                     <tr>
-                        <td scope="row" class="align-middle">22/06/2017 12:30</td>
-                        <td scope="row" class="align-middle">Gare de Nantes</td>
-                        <td scope="row" class="align-middle">Gare de Saint-Nazaire</td>
-                        <td scope="row" class="align-middle">Audi A6</td>
-                        <td scope="row" class="align-middle">François GEORGES</td>
-                        <td scope="row" class="align-middle">1</td>
+                        <td scope="row" class="align-middle">{{annonce.depart}}</td>
+                        <td scope="row" class="align-middle">{{annonce.adresse_depart.ville}}</td>
+                        <td scope="row" class="align-middle">{{annonce.adresse_arriver.ville}}</td>
+                        <td scope="row" class="align-middle">{{annonce.vehicule}}</td>
+                        <td scope="row" class="align-middle">{{annonce.chauffeur}}</td>
+                        <td scope="row" class="align-middle">{{annonce.place}}</td>
                         <td scope="row">
-                            <input type="button" class="btn btn-primary" value="Réserver" />
+                            <button type="submit" value="{{annonce.id}}}" class="btn btn-primary" *ngIf="annonce.place > 0;else noReservation">Réserver</button>
+                            <ng-template #noReservation>
+                                    <button type="submit" value="{{annonce.id}}}" class="btn btn-primary" disabled="disabled" >Réserver</button>
+                            </ng-template>
                         </td>
                     </tr>
                 </tbody>

@@ -12,6 +12,7 @@ import {StatutConnecteService} from "./auth/statut-connecte.service";
 import {AuthInterceptorService} from "./auth/auth-interceptor.service";
 import { ReserverComponent } from './reserver/reserver.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { FiltrerPipeVille } from './filtreVille';
 
 const routes: Routes = [
   { path:'tech', component: TechComponent, canActivate:[StatutConnecteService]},
@@ -26,7 +27,8 @@ const routes: Routes = [
     AppComponent,
     TechComponent,
     AuthComponent,
-    ReserverComponent
+    ReserverComponent,
+    FiltrerPipeVille
   ],
   imports: [
     BrowserModule,
