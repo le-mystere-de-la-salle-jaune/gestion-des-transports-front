@@ -7,13 +7,14 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { TechComponent } from './tech/tech.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { AuthComponent } from './auth/auth.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {StatutConnecteService} from "./auth/statut-connecte.service";
 import {AuthInterceptorService} from "./auth/auth-interceptor.service";
 import { ListeVehiculesComponent } from './liste-vehicules/liste-vehicules.component';
 import { VehiculeComponent } from './vehicule/vehicule.component';
 import { FiltrerPipeImma } from './filtrerImma.pipe';
 import { FiltrerPipeMarque } from './filtrerMarque.pipe';
+import { ModalFormComponent } from './modal-form/modal-form.component';
 
 const routes: Routes = [
   { path:'tech', component: TechComponent, canActivate:[StatutConnecteService]},
@@ -31,14 +32,16 @@ const routes: Routes = [
     ListeVehiculesComponent,
     VehiculeComponent,
     FiltrerPipeImma,
-    FiltrerPipeMarque
+    FiltrerPipeMarque,
+    ModalFormComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
