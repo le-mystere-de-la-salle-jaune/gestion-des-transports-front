@@ -72,8 +72,8 @@ export class AuthComponent implements OnInit {
   connecter() {
     this._authSrv.connecter(this.collegue.email, this.collegue.motDePasse)
       .subscribe(
-        // en cas de succès, redirection vers la page /tech
-        col => this._router.navigate(['/tech']),
+        // en cas de succès, redirection vers la page /collaborateur
+        col => this._router.navigate(['/collaborateur']),
 
         // en cas d'erreur, affichage d'un message d'erreur
         err =>this.err = true

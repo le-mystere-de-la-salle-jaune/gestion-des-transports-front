@@ -1,19 +1,19 @@
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-light bg-light" *ngIf="isAuth">
-  <mdb-navbar-brand>
-    <a class="navbar-brand" href="#">
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-light bg-light">
+  <mdb-navbar-brand >
+    <a class="navbar-brand" routerLinkActive="active" routerLink="/"  >
       <img src="assets/img/vroumvroumlesvoitures-logo.png" width="100" alt="Logo">
     </a>
   </mdb-navbar-brand>
   <links>
        <ul class="nav navbar-nav mr-auto" routerLinkActive="active">
           <li class="nav-item">
-              <a class="nav-link waves-light" routerLink="/collaborateur/reservations/" mdbWavesEffect>Mes résevations</a>
+              <a class="nav-link waves-light" routerLink="reservations/" mdbWavesEffect>Mes résevations</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link waves-light" routerLink="/collaborateur/annonces/" mdbWavesEffect>Mes annonces</a>
+              <a class="nav-link waves-light" routerLink="annonces/" mdbWavesEffect>Mes annonces</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link waves-light" routerLink="/collaborateur/statistiques" mdbWavesEffect>Statistiques</a>
+              <a class="nav-link waves-light" routerLink="statistiques" mdbWavesEffect>Statistiques</a>
       </ul>
   </links>
 </mdb-navbar>

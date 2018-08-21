@@ -2,15 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-collab-statistiques',
+  selector: 'app-collaborateur',
   template: `
-    <p>
-      collab-statistiques works!
-    </p>
+  <app-header></app-header>
+  <router-outlet></router-outlet>
   `,
   styles: []
 })
-export class CollabStatistiquesComponent implements OnInit {
+export class CollaborateurComponent implements OnInit {
 
   constructor() { }
 

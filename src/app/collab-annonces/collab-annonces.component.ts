@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class CollabAnnoncesComponent implements OnInit {
 
-  constructor(private _router:Router) { }
+  constructor() { }
 
   ngOnInit() {
   }
