@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Collegue} from "./auth.domains";
 import {AuthService} from "./auth.service";
 import {Router} from "@angular/router";
+import { Key } from 'protractor';
 
 /**
  * Formulaire d'authentification.
@@ -71,12 +72,14 @@ export class AuthComponent implements OnInit {
   connecter() {
     this._authSrv.connecter(this.collegue.email, this.collegue.motDePasse)
       .subscribe(
-        // en cas de succès, redirection vers la page /tech
-        col => this._router.navigate(['/tech']),
+        // en cas de succès, redirection vers la page /collaborateur
+        col => this._router.navigate(['/collaborateur']),
 
         // en cas d'erreur, affichage d'un message d'erreur
         err =>this.err = true
       );
+       // enregistrement dans le session storage
+       sessionStorage.setItem('email', this.collegue.email);
   }
 
 }
