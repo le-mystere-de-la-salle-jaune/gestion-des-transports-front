@@ -28,8 +28,8 @@
         <form role="form" (ngSubmit)="submit()" #monForm="ngForm">
           <div class="form-group">
             <label for="immatriculation">Immatriculation (Format 00-AAA-00)</label>
-            <input value="{{vehicule.immatriculation}}" type="text" name="immatriculation" class="form-control" [(ngModel)]="newVehicule.immatriculation" #immatriculation="ngModel"
-              required >{{vehicule.immatriculation}} {{newVehicule.immatriculation}}
+            <input type="text" name="immatriculation" class="form-control" [(ngModel)]="newVehicule.immatriculation" #immatriculation="ngModel"
+              required >
           </div>
           <div class="form-group">
             <label for="marque">Marque</label>

@@ -62,6 +62,7 @@ export class VehiculeComponent implements OnInit {
     this.newVehicule.categorie = this.numCategorie.toString()
     this.newVehicule.places = this.vehicule.places
     this.newVehicule.photoUrl = this.vehicule.photoUrl
+    this.newVehicule.societe = true
     this.frame.show()
   }
 
