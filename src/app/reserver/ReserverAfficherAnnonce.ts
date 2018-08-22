@@ -19,3 +19,12 @@ export class Adresse{
     }
 
 }
+
+export class CreerReservation{
+    constructor(public id_annonce:number,
+        public id_collegue:number,
+        public depart:string,
+        public adresse_depart:Adresse,
+        public adresse_arriver:Adresse){
+        }
+}

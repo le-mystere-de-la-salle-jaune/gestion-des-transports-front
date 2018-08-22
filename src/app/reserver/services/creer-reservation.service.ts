@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ReserverAfficherAnnonce, Adresse } from '../ReserverAfficherAnnonce'
+import { ReserverAfficherAnnonce, Adresse, CreerReservation } from '../ReserverAfficherAnnonce'
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'node_modules/rxjs';
 import { environment } from '../../../environments/environment.prod';
@@ -21,4 +21,16 @@ export class CreerReservationService {
       )
     )
   }
+
+  addReservation(annonce:CreerReservation): Observable<CreerReservation> {
+    {
+
+      return this._http.put(`http://localhost:8080/reserver/creer`, annonce).pipe(
+        map(
+          (data: any) => new CreerReservation(data.id, 1, data.depart, new Adresse(data.adresse_depart.numeroVoie, data.adresse_depart.designationVoie, data.adresse_depart.ville, data.adresse_depart.codePostal, data.adresse_depart.pays), new Adresse(data.adresse_arriver.numeroVoie, data.adresse_arriver.designationVoie, data.adresse_arriver.ville, data.adresse_arriver.codePostal, data.adresse_arriver.pays)))
+        )
+    }
+  }
+
+  
 }

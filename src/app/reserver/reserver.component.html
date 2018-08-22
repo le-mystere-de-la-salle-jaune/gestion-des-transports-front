@@ -5,68 +5,106 @@
     </tr>
 </table>
 <div class="jumbotron">
-        <p>Critères</p>
-        
-        <div class="form-group row">
-            <label for="depart" class="col-sm-2 col-form-label">Adresse de départ</label>
-            <div class="col-sm-2">
-                <input type="text" class="form-control" id="depart" [(ngModel)]="addressInput" (ngModelChange)="updateInput()">
-            </div>
-            <label for="arriver" class="col-sm-2 col-form-label">Adresse de destination</label>
-            <div class="col-sm-2">
-                <input type="text" class="form-control" id="arriver">
-            </div>
-            <label for="duree" class="col-sm-2 col-form-label">Durée du trajet</label>
-            <div class="col-sm-2">
-                <input type="text" readonly class="form-control" id="duree" value="x h xx mn">
-            </div>
+    <p>Critères</p>
+
+    <div class="form-group row">
+        <label for="depart" class="col-sm-2 col-form-label">Adresse de départ</label>
+        <div class="col-sm-2">
+            <input type="text" class="form-control" id="depart" [(ngModel)]="addressInput" (ngModelChange)="updateInput()">
         </div>
-        <div class="form-group row">
-            <label for="dateDepart" class="col-sm-2 col-form-label">Date de départ</label>
-            <div class="col-sm-3">
-                <input type="date" class="form-control" id="dateDepart">
-            </div>
-            <label for="distance" class="col-sm-2 col-form-label offset-md-3">Distance</label>
-            <div class="col-sm-2">
-                <input type="text" readonly class="form-control" id="distance" value="250km">
-            </div>
+        <label for="arriver" class="col-sm-2 col-form-label">Adresse de destination</label>
+        <div class="col-sm-2">
+            <input type="text" class="form-control" id="arriver">
         </div>
-        <button  (click)="selectVille()">test service</button>
-        Depart :
-            {{villeDepart}}
+        <label for="duree" class="col-sm-2 col-form-label">Durée du trajet</label>
+        <div class="col-sm-2">
+            <input type="text" readonly class="form-control" id="duree" value="x h xx mn">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="dateDepart" class="col-sm-2 col-form-label">Date de départ</label>
+        <div class="col-sm-3">
+            <input type="date" class="form-control" id="dateDepart">
+        </div>
+        <label for="distance" class="col-sm-2 col-form-label offset-md-3">Distance</label>
+        <div class="col-sm-2">
+            <input type="text" readonly class="form-control" id="distance" value="250km">
+        </div>
+    </div>
 
     <p (click)="test.toggle()" mdbWavesEffect>Covoiturages</p>
     <div class="" [mdbCollapse]="isCollapsed" #test="bs-collapse">
-        <form (ngSubmit)="submit()">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Date/Heure</th>
-                        <th scope="col">Départ</th>
-                        <th scope="col">Destination</th>
-                        <th scope="col">Véhicule</th>
-                        <th scope="col">Chauffeur</th>
-                        <th scope="col">Place disponibles</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody *ngFor="let annonce of annonces">
-                    <tr>
-                        <td scope="row" class="align-middle">{{annonce.depart}}</td>
-                        <td scope="row" class="align-middle">{{annonce.adresse_depart.ville}}</td>
-                        <td scope="row" class="align-middle">{{annonce.adresse_arriver.ville}}</td>
-                        <td scope="row" class="align-middle">{{annonce.vehicule}}</td>
-                        <td scope="row" class="align-middle">{{annonce.chauffeur}}</td>
-                        <td scope="row" class="align-middle">{{annonce.place}}</td>
-                        <td scope="row">
-                            <button type="submit" value="{{annonce.id}}}" class="btn btn-primary" *ngIf="annonce.place > 0;else noReservation">Réserver</button>
-                            <ng-template #noReservation>
-                                    <button type="submit" value="{{annonce.id}}}" class="btn btn-primary" disabled="disabled" >Réserver</button>
-                            </ng-template>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </form>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Date/Heure</th>
+                    <th scope="col">Départ</th>
+                    <th scope="col">Destination</th>
+                    <th scope="col">Véhicule</th>
+                    <th scope="col">Chauffeur</th>
+                    <th scope="col">Place disponibles</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let annonce of annonces">
+                <tr>
+                    <td scope="row" class="align-middle">{{annonce.depart}}</td>
+                    <td scope="row" class="align-middle">{{annonce.adresse_depart.ville}}</td>
+                    <td scope="row" class="align-middle">{{annonce.adresse_arriver.ville}}</td>
+                    <td scope="row" class="align-middle">{{annonce.vehicule}}</td>
+                    <td scope="row" class="align-middle">{{annonce.chauffeur}}</td>
+                    <td scope="row" class="align-middle">{{annonce.place}}</td>
+                    <td scope="row">
+                        <button type="button" class="button btn-primary" mdbBtn color="default" *ngIf="annonce.place > 0;else noReservation" rounded="true"
+                            data-toggle="modal" data-target="#basicExample" (click)="afficherInfo(annonce.id)" mdbWavesEffect>Réserver</button>
+                        <ng-template #noReservation>
+                            <button type="button" class="btn btn-primary" disabled="disabled">Réserver</button>
+                        </ng-template>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
+
+ <div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Réservation d'un covoiturage</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                 <table *ngIf="afficher">
+                    <tr>
+                        <td>Départ</td>
+                        <td>{{annonceDetail.adresse_depart.ville}}</td>
+                    </tr>
+                    <tr>
+                        <td>Destination</td>
+                        <td>{{annonceDetail.adresse_arriver.ville}}</td>
+                    </tr>
+                    <tr>
+                        <td>Date/heure</td>
+                        <td>{{annonceDetail.depart}}</td>
+                    </tr>
+                    <tr>
+                        <td>Véhicule</td>
+                        <td>{{annonceDetail.vehicule}}</td>
+                    </tr>
+                    <tr>
+                        <td>Chauffeur</td>
+                        <td>{{annonceDetail.chauffeur}}</td>
+                    </tr>
+                </table> 
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button mdbBtn color="default" class="waves-light" (click)="frame.hide()" mdbWavesEffect>Annuler</button>
+                <button mdbBtn color="default" class="waves-light" (click)="sendReservation()" mdbWavesEffect>Confirmer</button>
+            </div>
+        </div>
+    </div>
+</div> 
