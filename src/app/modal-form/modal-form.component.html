@@ -1,68 +1,56 @@
-
-<button type="button" mdbBtn color="default" rounded="true" data-toggle="modal" data-target="#basicExample" (click)="frame.show()"
-mdbWavesEffect>Ajouter un véhicule</button>
-
-<div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}" style="overflow: auto;">
-<div class="modal-dialog" role="document">
-  <div class="modal-content">
-    <div class="modal-header text-center">
-      <h4 class="modal-title w-100 font-weight-bold">Véhicule</h4>
-    </div>
-    <div class="modal-body mx-3">
-      <div class="md-form mb-5">
-        <input type="text" id="blueForm-immatriculation" class="form-control validate" [formControl]="signupFormModalImmatriculation" mdbInputDirective>
-        <label data-error="wrong" data-success="right" for="blueForm-immatriculation">Immatriculation (Format : 00-AAA-00)</label>
-      </div>
-      <div class="md-form mb-5">
-        <input type="text" id="blueForm-marque" class="form-control validate" [formControl]="signupFormModalMarque" mdbInputDirective>
-        <label data-error="wrong" data-success="right" for="blueForm-marque">Marque</label>
-      </div>
-      <div class="md-form mb-5">
-        <input type="text" id="blueForm-modele" class="form-control validate" [formControl]="signupFormModalModele" mdbInputDirective>
-        <label data-error="wrong" data-success="right" for="blueForm-modele">Modèle</label>
-      </div>
-      <div class="md-form mb-5">
-        <select class="browser-default">
-            <option value="" disabled selected>Catégorie</option>
-            <option *ngFor="let ct of optionsSelectCategories; let i = index" value="{{i}}">{{ct}}</option>
-        </select>
-       <!-- <input type="text" id="blueForm-categorie" class="form-control validate" [formControl]="signupFormModalPlace" mdbInputDirective>
-        <label data-error="wrong" data-success="right" for="blueForm-categorie">Catégorie</label>-->
-      </div>
-       <div class="md-form mb-5">
-            <select class="browser-default">
-                <option value="" disabled selected>Nombre de place</option>
-                <option *ngFor="let pl of optionsSelectPlaces" value="{{pl}}">{{pl}}</option>
-            </select>
-        <!--<input type="text" id="blueForm-place" class="form-control validate" [formControl]="signupFormModalPlace" mdbInputDirective>
-        <label data-error="wrong" data-success="right" for="blueForm-place">Nombre de place</label>-->
-      </div>
-      <div class="md-form mb-5">
-        <input type="text" id="blueForm-photo" class="form-control validate" [formControl]="signupFormModalPhoto" mdbInputDirective>
-        <label data-error="wrong" data-success="right" for="blueForm-photo">Photo</label>
-      </div>
-    <!--  <div class="md-form mb-5">
-        <i class="fa fa-envelope prefix grey-text"></i>
-        <input type="email" id="blueForm-email" class="form-control validate" [formControl]="signupFormModalEmail" mdbInputDirective>
-        <label data-error="wrong" data-success="right" for="blueForm-email">Marque</label>
-      </div>
-
-      <div class="md-form mb-4">
-        <i class="fa fa-lock prefix grey-text"></i>
-        <input type="password" id="blueForm-pass" class="form-control validate" [formControl]="signupFormModalPassword" mdbInputDirective>
-        <label data-error="wrong" data-success="right" for="blueForm-pass">Modèle</label>
-      </div>-->
-
-    </div>
-    <div class="modal-footer d-flex justify-content-center">
-        <div>
-            <button mdbBtn color="blue" class="waves-light" mdbWavesEffect (click)="frame.hide()">Annuler</button>
-        </div>
-        <div>
-            <button mdbBtn type="submit" color="blue" class="waves-light" mdbWavesEffect (click)="ajouter()">Ajouter</button>
-        </div>
-    </div>
+<div class="row">
+  <div class="col-3 offset-9">
+    <button type="button" mdbBtn color="default" rounded="true" data-toggle="modal" data-target="#basicExample" (click)="frame.show()"mdbWavesEffect>Ajouter un véhicule</button>
   </div>
 </div>
+<div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}" style="overflow: auto;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Véhicule</h4>
+      </div>
+      <div class="modal-body mx-3">
+        <form role="form" (ngSubmit)="submit()" #monForm="ngForm">
+          <div class="form-group">
+            <label for="immatriculation">Immatriculation (Format 00-AAA-00)</label>
+            <input type="text" name="immatriculation" class="form-control" [(ngModel)]="vehicule.immatriculation" #immatriculation="ngModel"
+              required>
+          </div>
+          <div class="form-group">
+            <label for="marque">Marque</label>
+            <input type="text" name="marque" class="form-control" [(ngModel)]="vehicule.marque" #marque="ngModel" required>
+          </div>
+          <div class="form-group">
+            <label for="modele">Modèle</label>
+            <input type="text" name="modele" class="form-control" [(ngModel)]="vehicule.modele" #modele="ngModel" required>
+          </div>
+          <div class="form-group">
+            <select class="browser-default" name="categorie" [(ngModel)]="vehicule.categorie" #categorie="ngModel" class="form-control" required>
+              <option value="" disabled selected>Catégorie</option>
+              <option *ngFor="let ct of optionsSelectCategories; let i = index" value="{{i}}">{{ct}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <select class="browser-default" name="places" [(ngModel)]="vehicule.places" #places="ngModel" class="form-control" required>
+              <option value="" disabled selected>Nombre de places</option>
+              <option *ngFor="let pl of optionsSelectPlaces" value="{{pl}}">{{pl}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="photoUrl">Photo URL</label>
+            <input type="url" name="photoUrl" class="form-control" [(ngModel)]="vehicule.photoUrl" #photoUrl="ngModel" required>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <div>
+          <button mdbBtn color="blue" class="waves-light" mdbWavesEffect (click)="cancel()">Annuler</button>
+        </div>
+        <div class="form-group">
+          <button type="submit" [disabled]="!monForm.valid" class="btn btn-default pull-right" (click)="submit()">Ajouter</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

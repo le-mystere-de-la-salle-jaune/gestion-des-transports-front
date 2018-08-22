@@ -1,6 +1,9 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,OnInit, ViewChild, Output } from '@angular/core';
 import { FormControl, Validators, ReactiveFormsModule, NgSelectOption } from '@angular/forms';
 import { Vehicule, Categories } from '../domains';
+import { VehiculeService } from '../services/vehicule.service';
+import { Router } from '@angular/router';
+import { EventEmitter } from 'events';
 
 @Component({
   selector: 'modal-form',
@@ -8,15 +11,19 @@ import { Vehicule, Categories } from '../domains';
   styleUrls: ['./modal-form.component.scss']
 })
 export class ModalFormComponent {
-  signupFormModalImmatriculation = new FormControl('', Validators.required);
-  signupFormModalMarque = new FormControl('', Validators.required);
-  signupFormModalModele = new FormControl('', Validators.required);
-  signupFormModalPlace = new FormControl('', Validators.required);
-  signupFormModalCategorie = new FormControl('', Validators.required);
-  signupFormModalPhoto = new FormControl('', Validators.required);
 
   optionsSelectPlaces:Array<number>=[]
   optionsSelectCategories:Array<string>=[]
+
+  vehicule:Vehicule=new Vehicule(undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined)
+
+  @ViewChild('frame')frame:any
+  
+
+  constructor(private _vh:VehiculeService,private router: Router)
+  {
+    
+  }
 
   ngOnInit()
   {
@@ -34,6 +41,21 @@ export class ModalFormComponent {
     this.optionsSelectCategories.push(Categories.BERLINES_TAILL_L)
     this.optionsSelectCategories.push(Categories.SUV_TT_PICKUP)
     
+  }
+
+  submit()
+  {
+    this.vehicule.categorie = this.optionsSelectCategories[this.vehicule.categorie]
+    this.vehicule.societe = true
+    this._vh.ajouterVehicule(this.vehicule)
+    this.frame.hide()
+    //location.reload()
+  }
+
+  cancel()
+  {
+    console.log(this.vehicule.categorie = this.optionsSelectCategories[this.vehicule.categorie])
+    this.frame.hide()
   }
 
 }

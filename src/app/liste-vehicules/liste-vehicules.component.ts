@@ -10,25 +10,21 @@ import {PipeTransform, Pipe} from '@angular/core';
 })
 export class ListeVehiculesComponent implements OnInit {
 
-  listeVehicules:Vehicule[]=[]
+  listeVehiculesSociete:Vehicule[]=[]
   saisiImma:string;
   saisiMarque:string;
 
-  constructor(private _listeVh:VehiculeService) 
+  constructor(private _listeVhS:VehiculeService) 
   { 
-    _listeVh.listerVehicules().then((vehicules:any) => {
+    _listeVhS.listerVehiculesSociete().then((vehicules:any) => {
       vehicules.forEach(vehicule => {
-        this.listeVehicules.push(vehicule);
+        this.listeVehiculesSociete.push(vehicule);
       });
     });
   }
 
   ngOnInit() {
-  }
-
-  ajouter()
-  {
-
+    
   }
 
 }

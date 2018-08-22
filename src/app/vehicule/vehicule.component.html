@@ -5,14 +5,68 @@
     <div class="card-footer text-muted">
         <div>
             <p>
-                {{vehicule?.immatriculation}}<br/>
+                {{vehicule.immatriculation}}<br/>
                 {{vehicule?.marque}} - {{vehicule?.modele}}<br/>
                 {{vehicule?.categorie}}
             </p>
         </div>
         <div>
-            <button type="button" class="btn btn-outline-premary" (click)="modifier(vehicule.id)">Modifier</button>
-            <button type="button" class="btn btn-outline-premary" (click)="supprimer(vehicule.id)">Supprimer</button>
+            <button type="button" mdbBtn color="default" rounded="true" data-toggle="modal" data-target="#frameModalTop" (click)="modifier()" mdbWavesEffect>Modfier</button>
+            <button type="button" class="btn btn-outline-premary" (click)="supprimer()">Supprimer</button>
         </div>
     </div>
   </div>
+
+  <div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}" style="overflow: auto;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Véhicule</h4>
+      </div>
+      <div class="modal-body mx-3">
+        <form role="form" (ngSubmit)="submit()" #monForm="ngForm">
+          <div class="form-group">
+            <label for="immatriculation">Immatriculation (Format 00-AAA-00)</label>
+            <input value="{{vehicule.immatriculation}}" type="text" name="immatriculation" class="form-control" [(ngModel)]="newVehicule.immatriculation" #immatriculation="ngModel"
+              required >{{vehicule.immatriculation}} {{newVehicule.immatriculation}}
+          </div>
+          <div class="form-group">
+            <label for="marque">Marque</label>
+            <input type="text" name="marque" class="form-control" [(ngModel)]="newVehicule.marque" #marque="ngModel" required>
+          </div>
+          <div class="form-group">
+            <label for="modele">Modèle</label>
+            <input type="text" name="modele" class="form-control" [(ngModel)]="newVehicule.modele" #modele="ngModel" required>
+          </div>
+          <div class="form-group">
+            <select class="browser-default" name="categorie" [(ngModel)]="newVehicule.categorie" #categorie="ngModel" class="form-control"
+              requiered>
+              <option value="" disabled selected>Catégorie</option>
+              <option *ngFor="let ct of optionsSelectCategories; let i = index" value="{{i}}">{{ct}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <select class="browser-default" name="places" [(ngModel)]="newVehicule.places" #places="ngModel" class="form-control" requiered>
+              <option value="" disabled selected>Nombre de places</option>
+              <option *ngFor="let pl of optionsSelectPlaces" value="{{pl}}">{{pl}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="photoUrl">Photo URL</label>
+            <input type="url" name="photoUrl" class="form-control" [(ngModel)]="newVehicule.photoUrl" #photoUrl="ngModel" required>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <div>
+          <button mdbBtn color="blue" class="waves-light" mdbWavesEffect (click)="cancel()">Annuler</button>
+        </div>
+        <div class="form-group">
+          <button type="submit" [disabled]="!monForm.valid" class="btn btn-default pull-right" (click)="submit()">Modifier</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
