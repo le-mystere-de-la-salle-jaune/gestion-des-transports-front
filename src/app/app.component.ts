@@ -9,7 +9,7 @@ import {Collegue} from "./auth/auth.domains";
  */
 @Component({
   selector: 'app-root',
-  template: `
+  template: ` 
     <div class="jumbotron">
       <h2 class="h1 h1-responsive">Super Application</h2>
       <div *ngIf="!(collegueConnecte | async).estAnonyme()">
@@ -22,10 +22,13 @@ import {Collegue} from "./auth/auth.domains";
   `,
   styles: []
 })
+
+
 export class AppComponent implements OnInit {
 
   collegueConnecte:Observable<Collegue>;
 
+  
   constructor(private _authSrv:AuthService, private _router:Router) {
 
   }
