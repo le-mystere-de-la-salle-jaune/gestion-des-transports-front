@@ -1,41 +1,5 @@
-
-<div class="container">
-    <h1>Liste des véhicules</h1>
-
-    <h4>Filtres</h4>
-
-    <div class="row">
-        <div class="col-2"> 
-                <label>Immatriculation</label>
-        </div>
-        <div class="col-4"> 
-            <input type="search" [(ngModel)]=saisiImma/>
-        </div>
+<div class="row">
+    <div class="col-12 col-sm-3" *ngFor="let vh of listeVehiculesSociete | filtrerImma:saisiImma | filtrerMarque:saisiMarque" style="margin:1%">
+      <app-vehicule [vehicule]="vh"></app-vehicule>
     </div>
-        
-    <div class="row">
-        <div class="col-2"> 
-            <label>Marque</label>
-        </div>
-        <div class="col-4"> 
-            <input type="search" [(ngModel)]=saisiMarque/>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-3 offset-9">
-
-        </div>        
-    </div>
-
-    <modal-form></modal-form>
-
-    <div class="row">
-      <div class="col-12 col-sm-3" *ngFor="let vh of listeVehiculesSociete | filtrerImma:saisiImma | filtrerMarque:saisiMarque" style="margin:1%">
-        <app-vehicule [vehicule]="vh"></app-vehicule>
-      </div>
-    </div>
-  </div>
-
-
-  
+</div>

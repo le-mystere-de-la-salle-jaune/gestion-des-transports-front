@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { EventEmitter } from 'events';
 
 @Component({
-  selector: 'modal-form',
+  selector: 'app-modal-form',
   templateUrl: './modal-form.component.html',
   styleUrls: ['./modal-form.component.scss']
 })
@@ -54,7 +54,6 @@ export class ModalFormComponent {
 
   cancel()
   {
-    console.log(this.vehicule.categorie = this.optionsSelectCategories[this.vehicule.categorie])
     this.frame.hide()
   }
 

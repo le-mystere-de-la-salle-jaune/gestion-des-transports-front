@@ -10,16 +10,17 @@ import { AuthComponent } from './auth/auth.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {StatutConnecteService} from "./auth/statut-connecte.service";
 import {AuthInterceptorService} from "./auth/auth-interceptor.service";
-import { ListeVehiculesComponent } from './liste-vehicules/liste-vehicules.component';
+import { PageListeVehiculesComponent } from './page-liste-vehicules/page-liste-vehicules.component';
 import { VehiculeComponent } from './vehicule/vehicule.component';
 import { FiltrerPipeImma } from './filtrerImma.pipe';
 import { FiltrerPipeMarque } from './filtrerMarque.pipe';
 import { ModalFormComponent } from './modal-form/modal-form.component';
+import { ListeVehiculesComponent } from './liste-vehicules/liste-vehicules.component';
 
 const routes: Routes = [
   { path:'tech', component: TechComponent, canActivate:[StatutConnecteService]},
   { path:'auth', component: AuthComponent},
-  { path:'admin/vehicules', component: ListeVehiculesComponent},
+  { path:'admin/vehicules', component: PageListeVehiculesComponent},
   { path: '', redirectTo: '/tech', pathMatch: 'full'}
 ];
 
@@ -29,11 +30,12 @@ const routes: Routes = [
     AppComponent,
     TechComponent,
     AuthComponent,
-    ListeVehiculesComponent,
+    PageListeVehiculesComponent,
     VehiculeComponent,
     FiltrerPipeImma,
     FiltrerPipeMarque,
     ModalFormComponent,
+    ListeVehiculesComponent,
   ],
   imports: [
     BrowserModule,

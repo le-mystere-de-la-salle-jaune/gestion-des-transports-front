@@ -1,7 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Vehicule, Categories } from '../domains';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { VehiculeService } from '../services/vehicule.service';
-import {PipeTransform, Pipe} from '@angular/core';
+import { Vehicule, Categories } from '../domains';
 
 @Component({
   selector: 'app-liste-vehicules',
@@ -10,42 +9,24 @@ import {PipeTransform, Pipe} from '@angular/core';
 })
 export class ListeVehiculesComponent implements OnInit {
 
-  listeVehiculesSociete:Vehicule[]=[]
-  saisiImma:string;
-  saisiMarque:string;
+  @Input()optionsSelectPlaces:Array<number>=[]
+  @Input()optionsSelectCategories:Array<string>=[]
 
-  optionsSelectPlaces:Array<number>=[]
-  optionsSelectCategories:Array<string>=[]
+  @Input()listeVehiculesSociete:Vehicule[]=[]
 
+  @Input()saisiImma:string;
+  @Input()saisiMarque:string; 
+
+  
   vehicule:Vehicule=new Vehicule(undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined)
 
   @ViewChild('frame')frame:any
-  
 
-
-  constructor(private _listeVhS:VehiculeService) 
-  { 
-    _listeVhS.listerVehiculesSociete().then((vehicules:any) => {
-      vehicules.forEach(vehicule => {
-        this.listeVehiculesSociete.push(vehicule);
-      });
-    });
-  }
+  constructor(private _listeVhS:VehiculeService) {
+   }
 
   ngOnInit() {
-    for (var _i = 1; _i < 21; _i++)
-    {
-      this.optionsSelectPlaces.push(_i)
-    }
-
-    this.optionsSelectCategories.push(Categories.MICRO_URBAINES)
-    this.optionsSelectCategories.push(Categories.MINI_CITADINES)
-    this.optionsSelectCategories.push(Categories.CITADINES_POLYVALENTES)
-    this.optionsSelectCategories.push(Categories.COMPACTES)
-    this.optionsSelectCategories.push(Categories.BERLINES_TAILLE_S)
-    this.optionsSelectCategories.push(Categories.BERLINES_TAILL_M)
-    this.optionsSelectCategories.push(Categories.BERLINES_TAILL_L)
-    this.optionsSelectCategories.push(Categories.SUV_TT_PICKUP)
+    
   }
 
   submit()
@@ -54,7 +35,7 @@ export class ListeVehiculesComponent implements OnInit {
     this.vehicule.societe = true
     this._listeVhS.ajouterVehicule(this.vehicule)
     this.frame.hide()
-    location.reload()
+    //location.reload()
   }
 
   cancel()
