@@ -16,7 +16,8 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 const routes: Routes = [
   { path:'tech', component: TechComponent, canActivate:[StatutConnecteService]},
   { path:'auth', component: AuthComponent},
-  { path:'reserver', component: ReserverComponent},
+  { path:'collaborateur/reservations/creer', component: ReserverComponent},
+  { path:'collaborateur/reservations', component: TechComponent},
   { path: '', redirectTo: '/tech', pathMatch: 'full'}
 ];
 

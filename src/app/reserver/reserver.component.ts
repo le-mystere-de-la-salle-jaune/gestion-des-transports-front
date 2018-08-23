@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CreerReservationService } from './services/creer-reservation.service';
 import { ReserverAfficherAnnonce, CreerReservation } from './ReserverAfficherAnnonce';
+import { Router } from '../../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-reserver',
@@ -16,8 +17,9 @@ export class ReserverComponent implements OnInit {
   annonceDetail: any;
   creerReservation: CreerReservation;
   afficher: boolean = false;
+  dateDepart:Date;
 
-  constructor(public creerReservationService: CreerReservationService) {
+  constructor(public creerReservationService: CreerReservationService, public router:Router) {
 
   }
 
@@ -58,11 +60,22 @@ export class ReserverComponent implements OnInit {
 
     this.creerReservationService.addReservation(this.creerReservation)
       .subscribe(
-        (annonce: CreerReservation) =>
-          console.log(annonce),
+        (annonce: CreerReservation) => {
+          this.closeWindows();
+          },
         (err: any) => {
-          console.log(err)
+          console.log(err);
         }
       )
+      this.closeWindows();
+  }
+
+  redirect(){
+    this.router.navigate(["/collaborateur/reservations"]);
+  }
+
+  closeWindows(){
+    this.frame.hide();
+    this.redirect();
   }
 }

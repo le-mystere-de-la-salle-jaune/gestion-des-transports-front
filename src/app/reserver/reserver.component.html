@@ -1,3 +1,5 @@
+<a (click)="redirect()">Retour à la liste</a>
+
 <h1>Réserver un véhicule</h1>
 <table class="table">
     <tr>
@@ -48,7 +50,7 @@
             </thead>
             <tbody *ngFor="let annonce of annonces">
                 <tr>
-                    <td scope="row" class="align-middle">{{annonce.depart}}</td>
+                    <td scope="row" class="align-middle">{{annonce.depart | date:'dd/MM/yyyy hh:mm'}}</td>
                     <td scope="row" class="align-middle">{{annonce.adresse_depart.ville}}</td>
                     <td scope="row" class="align-middle">{{annonce.adresse_arriver.ville}}</td>
                     <td scope="row" class="align-middle">{{annonce.vehicule}}</td>
@@ -67,7 +69,7 @@
     </div>
 </div>
 
- <div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+<div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -78,28 +80,28 @@
                 </button>
             </div>
             <div class="modal-body mx-3">
-                 <table *ngIf="afficher">
+                <table *ngIf="afficher">
                     <tr>
-                        <td>Départ</td>
+                        <th>Départ</th>
                         <td>{{annonceDetail.adresse_depart.ville}}</td>
                     </tr>
                     <tr>
-                        <td>Destination</td>
+                        <th>Destination</th>
                         <td>{{annonceDetail.adresse_arriver.ville}}</td>
                     </tr>
                     <tr>
-                        <td>Date/heure</td>
-                        <td>{{annonceDetail.depart}}</td>
+                        <th>Date/heure</th>
+                        <td>{{annonceDetail.dateDepart | date:'dd/MM/yyyy hh:mm' }}</td>
                     </tr>
                     <tr>
-                        <td>Véhicule</td>
+                        <th>Véhicule</th>
                         <td>{{annonceDetail.vehicule}}</td>
                     </tr>
                     <tr>
-                        <td>Chauffeur</td>
+                        <th>Chauffeur</th>
                         <td>{{annonceDetail.chauffeur}}</td>
                     </tr>
-                </table> 
+                </table>
             </div>
             <div class="modal-footer d-flex justify-content-center">
                 <button mdbBtn color="default" class="waves-light" (click)="frame.hide()" mdbWavesEffect>Annuler</button>
@@ -107,4 +109,4 @@
             </div>
         </div>
     </div>
-</div> 
+</div>
