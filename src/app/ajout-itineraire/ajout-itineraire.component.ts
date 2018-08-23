@@ -52,11 +52,11 @@ export class AjoutItineraireComponent implements OnInit{
     //load Places Autocomplete
     this._mapsAPILoader.load().then( () => {
       this.autocompleteDep = new google.maps.places.Autocomplete(this.searchElementRefDep.nativeElement, {
-        types: ["address"]
+        types: []
       })
 
       this.autocompleteArr = new google.maps.places.Autocomplete(this.searchElementRefArr.nativeElement, {
-        types: ["address"]
+        types: []
       })
 
       this.autocompleteDep.addListener("place_changed", () => {

@@ -5,10 +5,13 @@ import { HttpHeaders } from '@angular/common/http';
 import { environment } from '../environments/environment';
 
 export class Vehicule { nbPlace:string;marque:string;model:string;immatriculation:string}
-export class Adresse { adresseDep:PlaceAdress; adresseArr:PlaceAdress; dist:number; duree:string}
+export class Adresse { adresseDep:PlaceAdress; adresseArr:PlaceAdress; dist:number; duree:string;}
 export class DateHeure {dateDepart: Date; heureDepart: number; minuteDepart:number}
 export class Annonce { itineraireAnnonce:Adresse; vehiculeAnnonce: Vehicule; horraireAnnonce:DateHeure}
-export class PlaceAdress { street_number:number ; route:string; locality:string; administrative_area_level_1:string; country:string; postal_code:string}
+export class PlaceAdress { street_number:number ; route:string; locality:string; administrative_area_level_1:string; country:string; postal_code:string
+  toString(){
+    return this.street_number + " " + this.route +", " + this.locality + ", " + this.country
+  }}
 
 const httpOptions = {
   headers: new HttpHeaders({

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PublierAnnonceService, Vehicule, Adresse, DateHeure, Annonce } from '../publier-annonce.service';
 import { Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -14,6 +14,8 @@ export class PublierAnnonceComponent implements OnInit {
   adresseAnnonce:Adresse = new Adresse()
   horraireAnnonce:DateHeure = new DateHeure()
   finalAnnonce: Annonce = new Annonce()
+
+  @ViewChild('frame')frame:any
 
   constructor(private _publierAnnonceService:PublierAnnonceService) { 
   }
@@ -38,7 +40,11 @@ export class PublierAnnonceComponent implements OnInit {
     this.finalAnnonce.vehiculeAnnonce = this.vehiculeAnnonce
     this.finalAnnonce.horraireAnnonce = this.horraireAnnonce
 
+    this.frame.hide()
+
     this._publierAnnonceService.postAnnonce(this.finalAnnonce)
+
+    location.reload()
 
   }
 
