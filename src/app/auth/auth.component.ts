@@ -48,7 +48,7 @@ import {Router} from "@angular/router";
             <input type="submit" mdbBtn color="primary" sclass="waves-light" mdbWavesEffect value="Se connecter" (click)="connecter()">
           </div>
           <div *ngIf="err" class="text-danger">
-            Oops, les informations saisies ne permettent pas de vous authentifier.
+            Vas niker ta maire sal konar !
           </div>
         </form>
       </mdb-card-body>
@@ -73,7 +73,6 @@ export class AuthComponent implements OnInit {
       .subscribe(
         // en cas de succès, redirection vers la page /tech
         col => this._router.navigate(['/tech']),
-
         // en cas d'erreur, affichage d'un message d'erreur
         err =>this.err = true
       );

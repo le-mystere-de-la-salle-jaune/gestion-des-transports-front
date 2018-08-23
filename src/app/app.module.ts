@@ -14,6 +14,7 @@ import { PublierAnnonceComponent } from './publier-annonce/publier-annonce.compo
 import { AjoutItineraireComponent } from './ajout-itineraire/ajout-itineraire.component';
 import { AjoutVehiculeComponent } from './ajout-vehicule/ajout-vehicule.component';
 import { AjoutDateComponent } from './ajout-date/ajout-date.component';
+import { AgmCoreModule } from '@agm/core';
 
 const routes: Routes = [
   { path:'tech', component: TechComponent, canActivate:[StatutConnecteService]},
@@ -38,7 +39,11 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
-    FormsModule
+    FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyAI-Xa9jqwXSzHVG3IKNKgT_J74qpx3Oo8",
+      libraries: ["places"]
+    }),
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

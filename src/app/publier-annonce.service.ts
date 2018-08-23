@@ -1,14 +1,27 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
+import { environment } from '../environments/environment';
 
 export class Vehicule { nbPlace:string;marque:string;model:string;immatriculation:string}
+export class Adresse { adresseDep:PlaceAdress; adresseArr:PlaceAdress; dist:number; duree:string}
+export class DateHeure {dateDepart: Date; heureDepart: number; minuteDepart:number}
+export class Annonce { itineraireAnnonce:Adresse; vehiculeAnnonce: Vehicule; horraireAnnonce:DateHeure}
+export class PlaceAdress { street_number:number ; route:string; locality:string; administrative_area_level_1:string; country:string; postal_code:string}
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    "Content-Type" : "application/json"
+  })
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class PublierAnnonceService {
 
-  constructor() { }
+  constructor(private _http:HttpClient) { }
 
   vehiculeAnnonce:Vehicule = new Vehicule();
 
@@ -24,10 +37,20 @@ export class PublierAnnonceService {
       return this.action.asObservable();
   }
 
-  saveNbPlaceVehicule(data:any){
-    // exécution de l'action
 
-    // notification de tous les observateurs avec la donnée courante
-    this.action.next(data);
+  postAnnonce(annonceToPost:Annonce){
+    this._http.post(
+        environment.publierAnnonceUrl,
+        annonceToPost,
+        httpOptions
+    )
+    .toPromise()
+    .then((data: any) => {
+      return data.passage_concours_id
+    }, (error:any)=>{
+      console.log(error)
+      return -1
+    })
+
   }
 }

@@ -1,7 +1,7 @@
 <h3>Publier une annonce</h3>
 <form>
-    <app-ajout-itineraire></app-ajout-itineraire>
+    <app-ajout-itineraire (onAdresseChange)="saveAdresseChange($event)"></app-ajout-itineraire>
     <app-ajout-vehicule (onVehiculeChange)="saveVehiculeChange($event)"></app-ajout-vehicule>
-    <app-ajout-date></app-ajout-date>
+    <app-ajout-date (onHorraireChange)="saveHorraireChange($event)"></app-ajout-date>
     <button type="button" class="btn btn-primary" (click)="publier()">Publier</button>
 </form>

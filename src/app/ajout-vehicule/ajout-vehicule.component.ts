@@ -11,20 +11,17 @@ import { EventEmitter } from '@angular/core';
 })
 export class AjoutVehiculeComponent implements OnInit {
 
-  nbPlaces:string
+  nbPlace:string
   marque:string
   model:string
   immatriculation:string
-  vehiculeCovoit:Vehicule = new Vehicule();
+  vehiculeCovoit:Vehicule = new Vehicule()
+
   @Output() onVehiculeChange: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private _publierService: PublierAnnonceService) { }
+  constructor() { }
 
   ngOnInit() {
-  }
-
-  changeOnForm(value:string){
-    this._publierService.saveNbPlaceVehicule(value)
   }
 
   onNbPlaceChange(value: string) {
