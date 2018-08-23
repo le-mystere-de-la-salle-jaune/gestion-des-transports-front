@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Reservation } from './domains';
 import { filter } from 'rxjs/operators';
 
 @Pipe({
@@ -12,9 +11,9 @@ export class FiltrerReservationPipe implements PipeTransform {
   
   transform(value, reservationFuture) {
     if(reservationFuture == true) {
-      return value.filter(reservation => reservation.dateDepart > this.dateNowParse)
+      return value.filter(reservation => reservation.depart > this.dateNowParse)
     } else {
-      return value.filter(reservation => reservation.dateDepart < this.dateNowParse);
+      return value.filter(reservation => reservation.depart < this.dateNowParse);
     }
   }
 }

@@ -15,8 +15,9 @@ import { CollabReservationsComponent } from './collab-reservations/collab-reserv
 import { CollabAnnoncesComponent } from './collab-annonces/collab-annonces.component';
 import { CollabStatistiquesComponent } from './collab-statistiques/collab-statistiques.component';
 import { CollaborateurComponent } from './collaborateur/collaborateur.component';
-import { ReservationService } from './service/reservation.service';
-import { FiltrerReservationPipe } from './filtrer-reservation.pipe';
+import { ReservationService } from './services/reservation.service';
+import { PaginationService } from './services/pagination.service';
+import { FiltrerReservationPipe } from './pipes/filtrer-reservation.pipe';
 
 const routes: Routes = [
 
@@ -61,6 +62,7 @@ const routes: Routes = [
   ],
   providers: [
     ReservationService,
+    PaginationService,
     {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptorService,

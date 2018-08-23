@@ -23,29 +23,24 @@
                         <th class="th-lg"></th>
                     </tr>
                 </thead>
-                <!--Table head-->
+                <!-- end Table head-->
 
                 <!--Table body-->
                 <tbody>
-                    <!--<tr *ngFor="let data of tableData; let i = index">
-                        <td *ngIf="data.id >= firstVisibleIndex && data.id <= lastVisibleIndex">{{data.firstName}}</td>
-                        <td *ngIf="data.id >= firstVisibleIndex && data.id <= lastVisibleIndex">{{data.lastName}}</td>-->                  
-
                     <tr *ngFor="let reservation of listeReservations | FiltrerReservation:reservationFuture">
-                            <td>{{reservation.dateDepart}}</td>
-                            <td>{{reservation.villeDep}}</td>
-                            <td>{{reservation.villeArr}}</td>
-                            <td>
-                                <button type="button" mdbBtn color="indigo" size="sm" rounded="true" data-toggle="modal" data-target="#basicExample" (click)="openModal(reservation.id)"
-mdbWavesEffect>Détails</button>
-                                
-                            </td>
+                        <td>{{reservation.depart}}</td>
+                        <td>{{reservation.adresse_depart.ville}}</td>
+                        <td>{{reservation.adresse_arriver.ville}}</td>
+                        <td>
+                            <button type="button" mdbBtn color="indigo" size="sm" rounded="true" data-toggle="modal" data-target="#basicExample" (click)="openModal(reservation.id)"
+                                mdbWavesEffect>Détails</button>
+                        </td>
                     </tr>
                 </tbody>
-                <!--Table body-->
+                <!--end Table body-->
             </table>
-
             <hr class="my-0">
+
             <!--Table des historiques-->
             <div class="mb-3 mt-4">
 
@@ -66,128 +61,95 @@ mdbWavesEffect>Détails</button>
 
                 <!--Table body-->
                 <tbody>
-                    <!--<tr *ngFor="let data of tableData; let i = index">
-                        <td *ngIf="data.id >= firstVisibleIndex && data.id <= lastVisibleIndex">{{data.firstName}}</td>
-                        <td *ngIf="data.id >= firstVisibleIndex && data.id <= lastVisibleIndex">{{data.lastName}}</td>
-                        <td *ngIf="data.id >= firstVisibleIndex && data.id <= lastVisibleIndex">{{data.username}}</td>
-                        <td>-->
-                            <tr *ngFor="let reservation of listeReservations | FiltrerReservation:reservationPassee">
-                                <td>{{reservation.dateDepart}}</td>
-                                <td>{{reservation.villeDep}}</td>
-                                <td>{{reservation.villeArr}}</td>
-                                <td>
-                                    <button type="button" mdbBtn color="indigo" size="sm" rounded="true" data-toggle="modal" data-target="#basicExample" (click)="openModal(reservation.id)"
-  mdbWavesEffect>Détails</button>
-                                    
-                                </td>
-                        </tr>
+                    <tr *ngFor="let reservation of pagedListeReservations | FiltrerReservation:reservationPassee">
+                        <td>{{reservation.depart}}</td>
+                        <td>{{reservation.adresse_depart.ville}}</td>
+                        <td>{{reservation.adresse_arriver.ville}}</td>
+                        <td>
+                            <button type="button" mdbBtn color="indigo" size="sm" rounded="true" data-toggle="modal" data-target="#basicExample" (click)="openModal(reservation.id)"
+                                mdbWavesEffect>Détails</button>
+                        </td>
+                    </tr>
                 </tbody>
                 <!--Table body-->
             </table>
-
         </div>
-
+        <!--end Table des historiques-->
         <hr class="my-0">
 
-        <!--Bottom Table UI-->
+        <!--Bottom Table pagination-->
         <div class="d-flex justify-content-center">
 
-            <!--Pagination -->
+            <!-- pager -->
             <nav class="my-4 pt-2">
-                <ul class="pagination pagination-circle pg-purple mb-0">
-
-                    <!--First-->
-                    <li class="page-item clearfix d-none d-md-block" (click)="firstPage()" [ngClass]="{disabled: activePage == 1}">
-                        <a class="page-link">First</a>
+                <ul class="pagination pagination-circle pg-purple mb-0" *ngIf="pager.pages && pager.pages.length" class="pagination">
+                    <li class="page-item clearfix d-none d-md-block" [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a class="page-link" (click)="setPage(1)">Première page</a>
                     </li>
-
-                    <!--Arrow left-->
-                    <li class="page-item" (click)="previousPage($event)" [ngClass]="{disabled: activePage == 1}">
-                        <a class="page-link" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                            <span class="sr-only">Previous</span>
-                        </a>
+                    <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a class="page-link" (click)="setPage(pager.currentPage - 1)">Précédent</a>
                     </li>
-
-                    <!--Numbers-->
-                    <li #pages *ngFor="let page of paginators | slice:firstVisiblePaginator:lastVisiblePaginator; let i = index" class="page-item"
-                        [ngClass]="{active: i + firstVisiblePaginator + 1 == activePage}">
-                        <a class="page-link waves-light" (click)="changePage($event)" mdbWavesEffect>{{page}}</a>
+                    <li class="page-item" *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                        <a class="page-link waves-light" (click)="setPage(page)">{{page}}</a>
                     </li>
-
-
-
-                    <!--Arrow right-->
-                    <li class="page-item" (click)="nextPage($event)" [ngClass]="{disabled: activePage == numberOfPaginators}">
-                        <a class="page-link" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                            <span class="sr-only">Next</span>
-                        </a>
+                    <li class="page-item" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a class="page-link" (click)="setPage(pager.currentPage + 1)">Suivant</a>
                     </li>
-
-                    <!--First-->
-                    <li class="page-item clearfix d-none d-md-block" (click)="lastPage()" [ngClass]="{disabled: activePage == numberOfPaginators}">
-                        <a class="page-link">Last</a>
+                    <li class="page-item clearfix d-none d-md-block" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a class="page-link" (click)="setPage(pager.totalPages)">Dernière page</a>
                     </li>
-
                 </ul>
             </nav>
-            <!--/Pagination -->
-
         </div>
-        <!--Bottom Table UI-->
-
-
-        
-        <!--Configuration Modal-->
-        <div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-notify modal-info" role="document">
-    <!--Content-->
-    <div class="modal-content">
-      <!--Header-->
-      <div class="modal-header">
-        <p class="heading lead">Détails du covoiturage</p>
-
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
-          <span aria-hidden="true" class="white-text">&times;</span>
-        </button>
-      </div>
-
-      <!--Body-->
-      <div class="modal-body">
-            <div class="row">
-
-                    <div class="col text-right">
-                            <p>Départ : </p>
-                            <p>Destination : </p>
-                            <p>Date/heure : </p>
-                            <p>Véhicule : </p>
-                            <p>Chauffeur : </p>
-                    </div>
-                
-                    
-                    <div *ngIf="afficher" class="col">
-                            <p>{{reservationDetails.villeDep}}</p>
-                            <p>{{reservationDetails.villeArr}}</p>
-                            <p>{{reservationDetails.dateDepart}}</p>
-                            <p>{{reservationDetails.vehicule}}</p>
-                            <p>{{reservationDetails.chauffeur}}</p>
-                    </div>
-               
-      
-          
-        </div>
-      </div>
-
-      <!--Footer-->
-      <div class="modal-footer justify-content-center">
-        <a type="button" mdbBtn color="primary" outline="true" class="waves-effect" mdbWavesEffect (click)="frame.hide()">Fermer</a>
-      </div>
     </div>
-    <!--/.Content-->
-  </div>
 </div>
-<!--Fin configuration Modal-->
+<!--end Bottom Table pagination-->
+
+<!--Configuration Modal-->
+<div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-info" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <p class="heading lead">Détails du covoiturage</p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+                <table *ngIf="afficher">
+                    <tr>
+                        <td class="text-right">Départ : </td>
+                        <td>{{reservationDetails.adresse_depart.ville}}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-right">Destination : </td>
+                        <td>{{reservationDetails.adresse_arriver.ville}}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-right">Date/heure : </td>
+                        <td>{{reservationDetails.depart}}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-right">Véhicule : </td>
+                        <td>{{reservationDetails.vehicule}}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-right">Chauffeur : </td>
+                        <td>{{reservationDetails.chauffeur}}</td>
+                    </tr>
+                </table>
+                <!--Footer-->
+                <div class="modal-footer justify-content-center">
+                    <a type="button" mdbBtn color="primary" outline="true" class="waves-effect" mdbWavesEffect (click)="frame.hide()">Fermer</a>
+                </div>
+            </div>
+        </div>
+        <!--Fin configuration Modal-->
     </div>
 </div>
