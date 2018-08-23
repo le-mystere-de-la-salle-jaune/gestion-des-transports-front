@@ -12,6 +12,9 @@ import {StatutConnecteService} from "./auth/statut-connecte.service";
 import {AuthInterceptorService} from "./auth/auth-interceptor.service";
 import { ReserverComponent } from './reserver/reserver.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { FiltrerPipeDate } from './reserver/FiltrePipeDate';
+import { FiltrerPipeDestination } from './reserver/FiltrePipeDestination';
+import { AgmCoreModule } from '@agm/core';
 
 const routes: Routes = [
   { path:'tech', component: TechComponent, canActivate:[StatutConnecteService]},
@@ -27,14 +30,20 @@ const routes: Routes = [
     AppComponent,
     TechComponent,
     AuthComponent,
-    ReserverComponent
+    ReserverComponent,
+    FiltrerPipeDate,
+    FiltrerPipeDestination
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
-    FormsModule
+    FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyAI-Xa9jqwXSzHVG3IKNKgT_J74qpx3Oo8",
+      libraries: ["places"]
+    }),
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

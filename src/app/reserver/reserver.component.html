@@ -12,28 +12,28 @@
     <div class="form-group row">
         <label for="depart" class="col-sm-2 col-form-label">Adresse de départ</label>
         <div class="col-sm-2">
-            <input type="text" class="form-control" id="depart" [(ngModel)]="addressInput" (ngModelChange)="updateInput()">
+            <input type="text" class="form-control" id="depart" #addressInput>
         </div>
         <label for="arriver" class="col-sm-2 col-form-label">Adresse de destination</label>
         <div class="col-sm-2">
-            <input type="text" class="form-control" id="arriver">
+            <input type="text" class="form-control" id="arriver" #adressOuput>
         </div>
         <label for="duree" class="col-sm-2 col-form-label">Durée du trajet</label>
         <div class="col-sm-2">
-            <input type="text" readonly class="form-control" id="duree" value="x h xx mn">
+            <input type="text" readonly class="form-control" id="duree" value="{{duree}}">
         </div>
+        <button (click)="jenaimarre()"></button>
     </div>
     <div class="form-group row">
         <label for="dateDepart" class="col-sm-2 col-form-label">Date de départ</label>
         <div class="col-sm-3">
-            <input type="date" class="form-control" id="dateDepart">
+            <input type="date" class="form-control" id="dateDepart" [(ngModel)]=dateSeletionner>
         </div>
         <label for="distance" class="col-sm-2 col-form-label offset-md-3">Distance</label>
         <div class="col-sm-2">
-            <input type="text" readonly class="form-control" id="distance" value="250km">
+            <input type="text" readonly class="form-control" id="distance" value="{{distanceKm}}">
         </div>
     </div>
-
     <p (click)="test.toggle()" mdbWavesEffect>Covoiturages</p>
     <div class="" [mdbCollapse]="isCollapsed" #test="bs-collapse">
         <table class="table">
@@ -48,9 +48,9 @@
                     <th scope="col"></th>
                 </tr>
             </thead>
-            <tbody *ngFor="let annonce of annonces">
+            <tbody *ngFor="let annonce of annonces | filtrerDate:dateSeletionner | filtrerDestination:destinationSelectionner">
                 <tr>
-                    <td scope="row" class="align-middle">{{annonce.depart | date:'dd/MM/yyyy hh:mm'}}</td>
+                    <td scope="row" class="align-middle">{{annonce.dateDepart | date:'dd/MM/yyyy hh:mm'}}</td>
                     <td scope="row" class="align-middle">{{annonce.adresse_depart.ville}}</td>
                     <td scope="row" class="align-middle">{{annonce.adresse_arriver.ville}}</td>
                     <td scope="row" class="align-middle">{{annonce.vehicule}}</td>

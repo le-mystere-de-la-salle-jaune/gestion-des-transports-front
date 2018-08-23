@@ -1,4 +1,4 @@
-import { DatePipe, getLocaleDateFormat } from "../../../node_modules/@angular/common";
+import { DatePipe, getLocaleDateFormat } from "@angular/common";
 
 export class ReserverAfficherAnnonce{
     
@@ -36,6 +36,9 @@ export class Adresse{
 
 }
 
+export class PlaceAdress { street_number:number ; route:string; locality:string; administrative_area_level_1:string; country:string; postal_code:string}
+
+export class AdresseGoogleApi { adresseDep:PlaceAdress; adresseArr:PlaceAdress; dist:number; duree:string}
 
 export class CreerReservation{
     constructor(public id_annonce:number,
