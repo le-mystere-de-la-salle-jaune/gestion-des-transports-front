@@ -8,5 +8,5 @@ export const config = {
   apiLogin: 'login',
   apiLogout: 'logout',
   apiAuthMe: 'me',
-  apiCreerReservation: 'reserver/creer'
+  apiCreerReservation: 'reserver/creer/'
 };
