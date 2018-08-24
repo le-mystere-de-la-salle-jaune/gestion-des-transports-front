@@ -1,0 +1,85 @@
+<h3>Publier une annonce</h3>
+<form #monForm="ngForm">
+    <app-ajout-itineraire (onAdresseChange)="saveAdresseChange($event)"></app-ajout-itineraire>
+    <app-ajout-vehicule (onVehiculeChange)="saveVehiculeChange($event)"></app-ajout-vehicule>
+    <app-ajout-date (onHorraireChange)="saveHorraireChange($event)"></app-ajout-date>
+    
+    <button type="button" class="btn btn-primary" (click)="frame.show()" mdbWavesEffect [disabled]="!monForm.valid">Publier</button>
+     
+    <div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}" style="overflow: auto;">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+        <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold">Véhicule</h4>
+        </div>
+        <div class="modal-body mx-3 container">
+            <div class="row ">
+                <div div class="col-4 text-right">
+                    Départ
+                </div>
+                <div div class="col-8 text-left">
+                    {{adresseAnnonce.adresseDep?.toString()}}
+                </div>
+            </div>
+            <div class="row">
+                <div div class="col-4 text-right">
+                    Destination
+                </div>
+                <div div class="col-8 text-left">
+                    {{adresseAnnonce.adresseArr?.toString()}}
+                </div>
+            </div>
+            <div class="row">
+                <div div class="col-4 text-right">
+                    Immatriculation
+                </div>
+                <div div class="col-8 text-left">
+                    {{vehiculeAnnonce.immatriculation}}
+                </div>
+            </div>
+            <div class="row">
+                <div div class="col-4 text-right">
+                    Marque
+                </div>
+                <div div class="col-8 text-left">
+                    {{vehiculeAnnonce.marque}}
+                </div>
+            </div>
+            <div class="row">
+                <div div class="col-4 text-right">
+                    Model
+                </div>
+                <div div class="col-8 text-left">
+                    {{vehiculeAnnonce.model}}
+                </div>
+            </div>
+            <div class="row">
+                <div div class="col-4 text-right">
+                    Nb places disponibles
+                </div>
+                <div div class="col-8 text-left">
+                    {{vehiculeAnnonce.nbPlace}}
+                </div>
+            </div>
+            <div class="row">
+                <div div class="col-4 text-right">
+                    Date/heure
+                </div>
+                <div div class="col-8 text-left">
+                    {{horraireAnnonce.dateDepart}} à {{horraireAnnonce.heureDepart}}h{{horraireAnnonce.minuteDepart}}
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+            <div>
+            <button mdbBtn color="blue" class="waves-light" mdbWavesEffect (click)="frame.hide()">Annuler</button>
+            </div>
+            <div class="form-group">
+            <button type="submit" class="btn btn-default pull-right" (click)="publier()" >Ajouter</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+</form>

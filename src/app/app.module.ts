@@ -7,7 +7,15 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { TechComponent } from './tech/tech.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { AuthComponent } from './auth/auth.component';
+
+import { PublierAnnonceComponent } from './publier-annonce/publier-annonce.component';
+import { AjoutItineraireComponent } from './ajout-itineraire/ajout-itineraire.component';
+import { AjoutVehiculeComponent } from './ajout-vehicule/ajout-vehicule.component';
+import { AjoutDateComponent } from './ajout-date/ajout-date.component';
+import { AgmCoreModule } from '@agm/core';
+
 import { FormsModule,ReactiveFormsModule } from "@angular/forms";
+
 import { StatutConnecteService } from "./auth/statut-connecte.service";
 import { AuthInterceptorService } from "./auth/auth-interceptor.service";
 import { HeaderComponent } from './header/header.component';
@@ -46,7 +54,8 @@ const routes: Routes = [
       { path: 'propositions/creer', component: CollaborateurComponent },
       { path: 'annonces', component: CollabAnnoncesComponent },
       { path: 'statistiques', component: CollabStatistiquesComponent },
-
+      { path: 'collaborateur/annonces/creer', component: PublierAnnonceComponent},
+      { path: '', redirectTo: '/tech', pathMatch: 'full'}
     ]
   },
   {
@@ -67,6 +76,10 @@ const routes: Routes = [
     AppComponent,
     TechComponent,
     AuthComponent,
+    PublierAnnonceComponent,
+    AjoutItineraireComponent,
+    AjoutVehiculeComponent,
+    AjoutDateComponent
     HeaderComponent,
     CollabReservationsComponent,
     CollabAnnoncesComponent,
@@ -95,7 +108,13 @@ const routes: Routes = [
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
     FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyAI-Xa9jqwXSzHVG3IKNKgT_J74qpx3Oo8",
+      libraries: ["places"]
+    }),
+
     ReactiveFormsModule
+
   ],
   providers: [
     ReservationService,
