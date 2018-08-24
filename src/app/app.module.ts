@@ -15,6 +15,9 @@ import { CollabReservationsComponent } from './collab-reservations/collab-reserv
 import { CollabAnnoncesComponent } from './collab-annonces/collab-annonces.component';
 import { CollabStatistiquesComponent } from './collab-statistiques/collab-statistiques.component';
 import { CollaborateurComponent } from './collaborateur/collaborateur.component';
+import { ReservationService } from './services/reservation.service';
+import { PaginationService } from './services/pagination.service';
+import { FiltrerReservationPipe } from './pipes/filtrer-reservation.pipe';
 
 const routes: Routes = [
 
@@ -26,6 +29,7 @@ const routes: Routes = [
     component: CollaborateurComponent, canActivate: [StatutConnecteService],
     children: [
       { path: 'reservations', component: CollabReservationsComponent },
+      { path: 'propositions/creer', component: CollaborateurComponent },
       { path: 'annonces', component: CollabAnnoncesComponent },
       { path: 'statistiques', component: CollabStatistiquesComponent },
 
@@ -45,7 +49,8 @@ const routes: Routes = [
     CollabReservationsComponent,
     CollabAnnoncesComponent,
     CollabStatistiquesComponent,
-    CollaborateurComponent
+    CollaborateurComponent,
+    FiltrerReservationPipe
 
   ],
   imports: [
@@ -55,7 +60,10 @@ const routes: Routes = [
     MDBBootstrapModule.forRoot(),
     FormsModule
   ],
-  providers: [{
+  providers: [
+    ReservationService,
+    PaginationService,
+    {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptorService,
     multi: true
