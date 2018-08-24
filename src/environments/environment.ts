@@ -9,6 +9,8 @@ export const environment = Object.assign({
   production: false,
   baseUrl: `${backEndUrl}`,
   publierAnnonceUrl: `${backEndUrl}api/publier_annonce`,
+  reservationsApi: `api/reservations/`
+
 }, config);
 
 /*
