@@ -18,6 +18,13 @@ import { CollaborateurComponent } from './collaborateur/collaborateur.component'
 import { ReservationService } from './services/reservation.service';
 import { PaginationService } from './services/pagination.service';
 import { FiltrerReservationPipe } from './pipes/filtrer-reservation.pipe';
+import { ReservationSocieteComponent } from './reservation-societe/reservation-societe.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ReservationParticulierComponent } from './reservation-particulier/reservation-particulier.component';
+import { AgmCoreModule } from '@agm/core';
+import { ReservationComponent } from './reservation/reservation.component';
+import { FiltrerPipeDate } from './pipes/FiltrePipeDate';
+import { FiltrerPipeDestination } from './pipes/FiltrePipeDestination';
 
 const routes: Routes = [
 
@@ -29,6 +36,7 @@ const routes: Routes = [
     component: CollaborateurComponent, canActivate: [StatutConnecteService],
     children: [
       { path: 'reservations', component: CollabReservationsComponent },
+      { path: 'reservations/creer', component: ReservationComponent },
       { path: 'propositions/creer', component: CollaborateurComponent },
       { path: 'annonces', component: CollabAnnoncesComponent },
       { path: 'statistiques', component: CollabStatistiquesComponent },
@@ -50,15 +58,23 @@ const routes: Routes = [
     CollabAnnoncesComponent,
     CollabStatistiquesComponent,
     CollaborateurComponent,
-    FiltrerReservationPipe
-
+    FiltrerReservationPipe,
+    ReservationSocieteComponent,
+    ReservationParticulierComponent,
+    ReservationComponent,
+    FiltrerPipeDate,
+    FiltrerPipeDestination    
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
-    FormsModule
+    FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyAI-Xa9jqwXSzHVG3IKNKgT_J74qpx3Oo8",
+      libraries: ["places"]
+    }),
   ],
   providers: [
     ReservationService,
@@ -68,6 +84,7 @@ const routes: Routes = [
     useClass: AuthInterceptorService,
     multi: true
   }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [NO_ERRORS_SCHEMA]
 })
 export class AppModule { }
