@@ -14,7 +14,7 @@ export class ReserverComponent implements OnInit {
 
   @ViewChild('test') test: any;
   @ViewChild('frame') frame: any;
-  addressInput: string;
+  addressDepart: string;
   adressOuput: string;
   annonces: Array<ReserverAfficherAnnonce> = [];
   annonceDetail: any;
@@ -23,9 +23,8 @@ export class ReserverComponent implements OnInit {
   dateSeletionner: string;
   destinationSelectionner: string;
   itineraireCovoit: AdresseGoogleApi;
-
-  distanceKm: string;
-  duree: string;
+  distanceKm: string = "0 Km";
+  duree: string = "0 minute";
 
   @ViewChild("addressInput") searchElementRefDep: ElementRef;
   @ViewChild("adressOuput") searchElementRefArr: ElementRef;
@@ -47,7 +46,6 @@ export class ReserverComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this._mapsAPILoader.load().then(() => {
       this.autocompleteDep = new google.maps.places.Autocomplete(this.searchElementRefDep.nativeElement, {
         types: []
@@ -60,7 +58,7 @@ export class ReserverComponent implements OnInit {
       this.ngZone.run(() => {
         //get the place result
         let place: google.maps.places.PlaceResult = this.autocompleteDep.getPlace();
-        this.addressInput = this.saveAdress(place).locality;
+        this.addressDepart = this.saveAdress(place).locality;
         this.updateInput();
         //console.log(this.addressInput);
       })
@@ -96,7 +94,7 @@ export class ReserverComponent implements OnInit {
   }
 
   selectVille() {
-    this.creerReservationService.listerAnnonceVilleDepart(this.addressInput)
+    this.creerReservationService.listerAnnonceVilleDepart(this.addressDepart)
       .subscribe(
         (listeAnnonces: Array<ReserverAfficherAnnonce>) =>
           this.annonces = listeAnnonces,
