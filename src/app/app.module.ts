@@ -16,11 +16,18 @@ import { FiltrerPipeImma } from './filtrerImma.pipe';
 import { FiltrerPipeMarque } from './filtrerMarque.pipe';
 import { ModalFormComponent } from './modal-form/modal-form.component';
 import { ListeVehiculesComponent } from './liste-vehicules/liste-vehicules.component';
+import { PageListeChauffeursComponent } from './page-liste-chauffeurs/page-liste-chauffeurs.component';
+import { ListeChauffeursComponent } from './liste-chauffeurs/liste-chauffeurs.component';
+import { ChauffeurComponent } from './chauffeur/chauffeur.component';
+import { FiltrerPipePrenom } from './filtrerPrenom.pipe';
+import { FiltrerPipeNom } from './filtrerNom.pipe';
+import { FiltrerPipeMatricule } from './filtrerMatricule.pipe';
 
 const routes: Routes = [
   { path:'tech', component: TechComponent, canActivate:[StatutConnecteService]},
   { path:'auth', component: AuthComponent},
   { path:'admin/vehicules', component: PageListeVehiculesComponent},
+  { path:'admin/chauffeurs', component: PageListeChauffeursComponent},
   { path: '', redirectTo: '/tech', pathMatch: 'full'}
 ];
 
@@ -34,8 +41,14 @@ const routes: Routes = [
     VehiculeComponent,
     FiltrerPipeImma,
     FiltrerPipeMarque,
+    FiltrerPipeMatricule,
+    FiltrerPipeNom,
+    FiltrerPipePrenom,
     ModalFormComponent,
     ListeVehiculesComponent,
+    PageListeChauffeursComponent,
+    ListeChauffeursComponent,
+    ChauffeurComponent,
   ],
   imports: [
     BrowserModule,

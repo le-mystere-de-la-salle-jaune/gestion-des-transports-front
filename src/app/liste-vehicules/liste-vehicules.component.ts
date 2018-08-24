@@ -40,7 +40,6 @@ export class ListeVehiculesComponent implements OnInit {
 
   cancel()
   {
-    console.log(this.vehicule.categorie = this.optionsSelectCategories[this.vehicule.categorie])
     this.frame.hide()
   }
 
