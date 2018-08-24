@@ -7,7 +7,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { TechComponent } from './tech/tech.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { AuthComponent } from './auth/auth.component';
-import { FormsModule } from "@angular/forms";
+import { FormsModule,ReactiveFormsModule } from "@angular/forms";
 import { StatutConnecteService } from "./auth/statut-connecte.service";
 import { AuthInterceptorService } from "./auth/auth-interceptor.service";
 import { HeaderComponent } from './header/header.component';
@@ -18,6 +18,20 @@ import { CollaborateurComponent } from './collaborateur/collaborateur.component'
 import { ReservationService } from './services/reservation.service';
 import { PaginationService } from './services/pagination.service';
 import { FiltrerReservationPipe } from './pipes/filtrer-reservation.pipe';
+import { PageListeVehiculesComponent } from './page-liste-vehicules/page-liste-vehicules.component';
+import { PageListeChauffeursComponent } from './page-liste-chauffeurs/page-liste-chauffeurs.component';
+import { ModalFormComponent } from './modal-form/modal-form.component';
+import { FiltrerPipePrenom } from './pipes/filtrerPrenom.pipe';
+import { FiltrerPipeNom } from './pipes/filtrerNom.pipe';
+import { FiltrerPipeMatricule } from './pipes/filtrerMatricule.pipe';
+import { FiltrerPipeMarque } from './pipes/filtrerMarque.pipe';
+import { FiltrerPipeImma } from './pipes/filtrerImma.pipe';
+import { ChauffeurComponent } from './chauffeur/chauffeur.component';
+import { ListeChauffeursComponent } from './liste-chauffeurs/liste-chauffeurs.component';
+import { ListeVehiculesComponent } from './liste-vehicules/liste-vehicules.component';
+import { VehiculeComponent } from './vehicule/vehicule.component';
+import { AdminComponent } from './admin/admin.component';
+import { HeaderAdminComponent } from './header/header-admin.component';
 
 const routes: Routes = [
 
@@ -35,6 +49,14 @@ const routes: Routes = [
 
     ]
   },
+  {
+    path: 'admin',
+    component: CollaborateurComponent, canActivate: [StatutConnecteService],
+    children: [
+  { path:'vehicules', component: PageListeVehiculesComponent},
+  { path:'chauffeurs', component: PageListeChauffeursComponent},
+    ]
+  },
 
   { path: '', redirectTo: 'collaborateur', pathMatch: 'full' }
 ];
@@ -50,7 +72,21 @@ const routes: Routes = [
     CollabAnnoncesComponent,
     CollabStatistiquesComponent,
     CollaborateurComponent,
-    FiltrerReservationPipe
+    FiltrerReservationPipe,
+    FiltrerPipeImma,
+    FiltrerPipeMarque,
+    FiltrerPipeMatricule,
+    FiltrerPipeNom,
+    FiltrerPipePrenom,
+    ModalFormComponent,
+    PageListeChauffeursComponent,
+    ListeChauffeursComponent,
+    ChauffeurComponent,
+    PageListeVehiculesComponent,
+    ListeVehiculesComponent,
+    VehiculeComponent,
+    AdminComponent,
+    HeaderAdminComponent
 
   ],
   imports: [
@@ -58,7 +94,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     ReservationService,
