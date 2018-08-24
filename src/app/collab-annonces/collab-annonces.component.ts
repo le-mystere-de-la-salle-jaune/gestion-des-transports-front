@@ -4,9 +4,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-collab-annonces',
   template: `
-    <p>
-      collab-annonces works!
-    </p>
+    <app-publier-annonce></app-publier-annonce>
   `,
   styles: []
 })

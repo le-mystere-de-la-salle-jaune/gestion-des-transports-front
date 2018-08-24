@@ -54,13 +54,13 @@ const routes: Routes = [
       { path: 'propositions/creer', component: CollaborateurComponent },
       { path: 'annonces', component: CollabAnnoncesComponent },
       { path: 'statistiques', component: CollabStatistiquesComponent },
-      { path: 'collaborateur/annonces/creer', component: PublierAnnonceComponent},
-      { path: '', redirectTo: '/tech', pathMatch: 'full'}
+      { path: 'annonces/creer', component: PublierAnnonceComponent},
+      { path: '', redirectTo: 'collaborateur', pathMatch: 'full'}
     ]
   },
   {
     path: 'admin',
-    component: CollaborateurComponent, canActivate: [StatutConnecteService],
+    component: AdminComponent, canActivate: [StatutConnecteService],
     children: [
   { path:'vehicules', component: PageListeVehiculesComponent},
   { path:'chauffeurs', component: PageListeChauffeursComponent},
@@ -79,7 +79,7 @@ const routes: Routes = [
     PublierAnnonceComponent,
     AjoutItineraireComponent,
     AjoutVehiculeComponent,
-    AjoutDateComponent
+    AjoutDateComponent,
     HeaderComponent,
     CollabReservationsComponent,
     CollabAnnoncesComponent,
