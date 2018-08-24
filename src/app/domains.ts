@@ -19,4 +19,15 @@ export class Adresse{
     }
 }
 
+export class ReservationSociete {
+    constructor(
+        public id:number,
+        public date_debut:Date,
+        public date_fin:Date,
+        public marque:string,
+        public modele:string,
+        public immatriculation:string,
+    ) {}
+}
+
   

@@ -18,6 +18,7 @@ import { CollaborateurComponent } from './collaborateur/collaborateur.component'
 import { ReservationService } from './services/reservation.service';
 import { PaginationService } from './services/pagination.service';
 import { FiltrerReservationPipe } from './pipes/filtrer-reservation.pipe';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 const routes: Routes = [
 
@@ -68,6 +69,7 @@ const routes: Routes = [
     useClass: AuthInterceptorService,
     multi: true
   }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [NO_ERRORS_SCHEMA]
 })
 export class AppModule { }

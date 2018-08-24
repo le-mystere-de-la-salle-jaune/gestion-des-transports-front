@@ -6,7 +6,8 @@ import { config } from './common';
 export const environment = Object.assign({
   production: false,
   baseUrl: 'http://localhost:8080/',
-  reservationsApi: 'api/reservations/'
+  reservationsApi: 'api/reservations/',
+  reservationsSocieteApi: 'api/reservationsSociete',
 }, config);
 
 /*
