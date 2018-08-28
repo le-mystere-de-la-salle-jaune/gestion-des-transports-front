@@ -26,6 +26,7 @@ import { CollaborateurComponent } from './collaborateur/collaborateur.component'
 import { ReservationService } from './services/reservation.service';
 import { PaginationService } from './services/pagination.service';
 import { FiltrerReservationPipe } from './pipes/filtrer-reservation.pipe';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { PageListeVehiculesComponent } from './page-liste-vehicules/page-liste-vehicules.component';
 import { PageListeChauffeursComponent } from './page-liste-chauffeurs/page-liste-chauffeurs.component';
 import { ModalFormComponent } from './modal-form/modal-form.component';
@@ -124,6 +125,7 @@ const routes: Routes = [
     useClass: AuthInterceptorService,
     multi: true
   }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [NO_ERRORS_SCHEMA]
 })
 export class AppModule { }
