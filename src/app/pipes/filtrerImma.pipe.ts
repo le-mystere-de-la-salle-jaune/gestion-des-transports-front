@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Vehicule } from './domains';
+import {Vehicule} from './../domains';
 
 @Pipe({
   name: 'filtrerImma'
