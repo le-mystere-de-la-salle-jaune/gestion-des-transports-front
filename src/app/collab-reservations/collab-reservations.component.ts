@@ -27,7 +27,7 @@ export class CollabReservationsComponent implements OnInit {
     pager: any = {};
 
      // pager object
-     pagerSociete: any = {};
+    pagerSociete: any = {};
 
     // paged reservations
     pagedListeReservations: Reservation[] = [];

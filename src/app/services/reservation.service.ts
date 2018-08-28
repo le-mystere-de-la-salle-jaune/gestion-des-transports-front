@@ -6,13 +6,6 @@ import { environment } from '../../environments/environment';
 import { map, filter } from 'rxjs/operators';
 import { ReservationSociete } from './../domains';
 
-
-// en développement, URL_BACKEND = 'http://localhost:8080/api/reservations'
-// en mode production, URL_BACKEND = 'à définir'
-const URL_BACKEND = environment.baseUrl + environment.reservationsApi;
-const URL_BACKEND_SOCIETE = environment.baseUrl + environment.reservationsSocieteApi;
-
-
 @Injectable()
 export class ReservationService {
 
@@ -22,7 +15,7 @@ export class ReservationService {
   constructor(private _http: HttpClient) { }
 
   listerReservations(): Observable<Reservation[]> {
-    const reservation$ = this._http.get(URL_BACKEND)
+    const reservation$ = this._http.get(`${environment.baseUrl}${environment.reservationsApi}/${sessionStorage.getItem("email")}`)
       .pipe(
         map((reservationsServeur: any[]) => reservationsServeur.map( el => new Reservation(el.id, el.depart, new Adresse(el.adresse_depart.numeroVoie, el.adresse_depart.designationVoie, el.adresse_depart.ville, el.adresse_depart.codePostal, el.adresse_depart.pays), new Adresse(el.adresse_arriver.numeroVoie, el.adresse_arriver.designationVoie, el.adresse_arriver.ville, el.adresse_arriver.codePostal, el.adresse_arriver.pays), el.vehicule, el.chauffeur)))
       );
@@ -31,7 +24,7 @@ export class ReservationService {
   }
 
   listerReservationsSociete(): Observable<ReservationSociete[]> {
-    const reservationSociete$ = this._http.get(URL_BACKEND_SOCIETE)
+    const reservationSociete$ = this._http.get(`${environment.baseUrl}${environment.reservationsSocieteApi}/${sessionStorage.getItem("email")}`)
       .pipe(
         map((reservationsSocieteServeur: any[]) => reservationsSocieteServeur.map( el => new ReservationSociete(el.id, el.date_debut, el.date_fin, el.marque, el.modele, el.immatriculation)))
       );
