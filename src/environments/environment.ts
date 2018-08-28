@@ -3,11 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 import { config } from './common';
 
+const backEndUrl = "http://localhost:8080/"
+
 export const environment = Object.assign({
   production: false,
-  baseUrl: 'http://localhost:8080/',
-  reservationsApi: 'api/reservations/',
-  reservationsSocieteApi: 'api/reservationsSociete',
+
+  baseUrl: `${backEndUrl}`,
+  publierAnnonceUrl: `${backEndUrl}api/publier_annonce`,
+  reservationsApi: `api/reservations/`,
+  reservationsSocieteApi: 'api/reservationsSociete'
 }, config);
 
 /*

@@ -1,0 +1,37 @@
+<div class="border">
+    Itinéraire
+</div>
+<div class="container border">
+    
+        <div class="row">
+                <div class="col-3 text-right " style="margin-top:0.6em;">Adresse de départ*</div>
+                <div class="col-9 text-left" style="margin-top:0.4em;">
+                        <input type="text" id="adresseDep" class="form-control form-control-sm"
+                        [(ngModel)]="adresseDep" #searchDep 
+                        #champAdresseDep="ngModel" required ><br>
+                </div>
+                <div *ngIf="champAdresseDep.invalid && champAdresseDep.dirty">
+                        L'adresse de départ est une adresse inconnue.
+                </div>
+        </div>
+        <div class="row">
+                <div class="col-3 text-right" style="margin-top:0.3em;"><label id="adresseArr">Adresse de déstination*</label></div>
+                <div class="col-9 text-left">
+                        <input type="text" id="adresseArr" class="form-control form-control-sm"
+                        [(ngModel)]="adresseArr" #searchArr 
+                        #champAdresseArr="ngModel" required><br>
+                </div>
+                <div *ngIf="champAdresseArr.invalid && champAdresseArr.dirty">
+                        L'adresse d'arrivée' est une adresse inconnue.
+                </div>
+        </div>
+        <div class="row">
+                <div class="col-3 text-right">Durée du trajet</div>
+                <div class="col-9 text-left"><span *ngIf="champAdresseArr.valid && champAdresseDep.valid">{{duree}}</span><br></div>
+        </div>
+        <div class="row">
+                <div class="col-3 text-right">Distance</div>
+                <div class="col-9 text-left"> <span *ngIf="champAdresseArr.valid && champAdresseDep.valid">{{distance}}</span><br></div>
+        </div>
+    
+</div>
