@@ -33,7 +33,7 @@ const routes: Routes = [
       { path: 'reservations', component: CollabReservationsComponent },
       { path: 'annonces', component: CollabAnnoncesComponent },
       { path: 'statistiques', component: CollabStatistiquesComponent },
-      { path: 'collaborateur/annonces/creer', component: PublierAnnonceComponent},
+      { path: 'annonces/creer', component: PublierAnnonceComponent},
       { path: '', redirectTo: '/tech', pathMatch: 'full'}
     ]
   },
@@ -50,7 +50,7 @@ const routes: Routes = [
     PublierAnnonceComponent,
     AjoutItineraireComponent,
     AjoutVehiculeComponent,
-    AjoutDateComponent
+    AjoutDateComponent,
     HeaderComponent,
     CollabReservationsComponent,
     CollabAnnoncesComponent,

@@ -39,6 +39,7 @@ export class PublierAnnonceComponent implements OnInit {
     this.finalAnnonce.itineraireAnnonce = this.adresseAnnonce
     this.finalAnnonce.vehiculeAnnonce = this.vehiculeAnnonce
     this.finalAnnonce.horraireAnnonce = this.horraireAnnonce
+    this.finalAnnonce.userEmail = sessionStorage.getItem("email")
 
     this.frame.hide()
 
