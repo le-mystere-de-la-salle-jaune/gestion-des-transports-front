@@ -11,8 +11,9 @@
             </p>
         </div>
         <div>
+            <button type="button" mdbBtn color="default" rounded="true"  (click)="details(vehicule.id)" mdbWavesEffect>Détails</button>
             <button type="button" mdbBtn color="default" rounded="true" data-toggle="modal" data-target="#frameModalTop" (click)="modifier()" mdbWavesEffect>Modfier</button>
-            <button type="button" class="btn btn-outline-premary" (click)="supprimer()">Supprimer</button>
+            <button type="button" mdbBtn color="default" rounded="true"  (click)="supprimer()" mdbWavesEffect>Supprimer</button>
         </div>
     </div>
   </div>

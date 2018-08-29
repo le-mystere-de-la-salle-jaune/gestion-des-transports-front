@@ -21,41 +21,41 @@ export class VehiculeService
   {
     return this._http.get(`${URL_BACKEND}/${API_VH}`)
     .toPromise()
-    .then((data: any) => data.map(el => new Vehicule(el.id,el.photoUrl, el.immatriculation,el.marque, el.modele, el.categorie, el.places, el.societe)));
+    .then((data: any) => data.map(el => new Vehicule(el.id,el.photoUrl, el.immatriculation,el.marque, el.modele, el.categorie, el.places, el.societe,el.etat)));
   }
 
   listerVehiculesSociete():Promise<Vehicule[]>
   {
     return this._http.get(`${URL_BACKEND}/${API_VH}/societe`)
     .toPromise()
-    .then((data: any) => data.map(el => new Vehicule(el.id,el.photoUrl, el.immatriculation,el.marque, el.modele, el.categorie, el.places, el.societe)));
+    .then((data: any) => data.map(el => new Vehicule(el.id,el.photoUrl, el.immatriculation,el.marque, el.modele, el.categorie, el.places, el.societe,el.etat)));
   }
 
-  trouverVehiculeParId(id:number)
+  trouverVehiculeParId(id:number):Promise<Vehicule>
   {
-    return this._http.get(`${URL_BACKEND}/${API_VH}/${id}`)
+    return this._http.get(`${URL_BACKEND}/${API_VH}/societe/${id}`)
     .toPromise()
-    .then((el: any) => new Vehicule(el.id,el.photoUrl, el.immatriculation,el.marque, el.modele, el.categorie, el.places, el.societe));
+    .then((el: any) => new Vehicule(el.id,el.photoUrl, el.immatriculation,el.marque, el.modele, el.categorie, undefined, undefined,el.etat));
   }
 
   modifierVehicule(ngForm)
   {
     return this._http.put(`${URL_BACKEND}/${API_VH}`,ngForm)
     .toPromise()
-    .then((el: any) => new Vehicule(el.id,el.photoUrl, el.immatriculation,el.marque, el.modele, el.categorie, el.places, el.societe));
+    .then((el: any) => new Vehicule(el.id,el.photoUrl, el.immatriculation,el.marque, el.modele, el.categorie, el.places, el.societe,el.etat));
   }
 
   ajouterVehicule(ngForm)
   {
     return this._http.post(`${URL_BACKEND}/${API_VH}`,ngForm)
     .toPromise()
-    .then((el: any) => new Vehicule(el.id,el.photoUrl, el.immatriculation,el.marque, el.modele, el.categorie, el.places, el.societe));
+    .then((el: any) => new Vehicule(el.id,el.photoUrl, el.immatriculation,el.marque, el.modele, el.categorie, el.places, el.societe,el.etat));
   }
 
   supprimerVehicule(id:number)
   {
     return this._http.delete(`${URL_BACKEND}/${API_VH}/${id}`)
     .toPromise()
-    .then((el: any) => new Vehicule(el.id,el.photoUrl, el.immatriculation,el.marque, el.modele, el.categorie, el.places, el.societe));
+    .then((el: any) => new Vehicule(el.id,el.photoUrl, el.immatriculation,el.marque, el.modele, el.categorie, el.places, el.societe,el.etat));
   }
 }

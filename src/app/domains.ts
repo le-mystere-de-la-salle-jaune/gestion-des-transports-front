@@ -21,7 +21,7 @@ export class Adresse{
 
 export class Vehicule
 {
-    constructor(public id:number,public photoUrl:string,public immatriculation:string,public marque:string,public modele:string, public categorie:string,public places:number,public societe:boolean)
+    constructor(public id:number,public photoUrl:string,public immatriculation:string,public marque:string,public modele:string, public categorie:string,public places:number,public societe:boolean, public etat:string)
     {
    
     }
@@ -38,6 +38,13 @@ export enum Categories
     BERLINES_TAILL_M = "Berline taille M", 
     BERLINES_TAILL_L = "Berline taille L",
     SUV_TT_PICKUP= "SUV/Tout terrain/Pick-Up"
+}
+
+export enum Etat
+{
+    EN_SERVICE = "En service",
+    HORS_SERVICE = "Hors service",
+    EN_REPARATION = "En réparation"
 }
 
 export class Collaborateur

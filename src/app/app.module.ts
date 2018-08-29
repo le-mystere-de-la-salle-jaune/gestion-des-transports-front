@@ -40,6 +40,7 @@ import { ListeVehiculesComponent } from './liste-vehicules/liste-vehicules.compo
 import { VehiculeComponent } from './vehicule/vehicule.component';
 import { AdminComponent } from './admin/admin.component';
 import { HeaderAdminComponent } from './header/header-admin.component';
+import { PageDetailsVehiculeComponent } from './page-details-vehicule/page-details-vehicule.component';
 
 const routes: Routes = [
 
@@ -63,6 +64,7 @@ const routes: Routes = [
     component: AdminComponent, canActivate: [StatutConnecteService],
     children: [
   { path:'vehicules', component: PageListeVehiculesComponent},
+  { path:'vehicules/:id', component: PageDetailsVehiculeComponent},
   { path:'chauffeurs', component: PageListeChauffeursComponent},
     ]
   },
@@ -99,7 +101,8 @@ const routes: Routes = [
     ListeVehiculesComponent,
     VehiculeComponent,
     AdminComponent,
-    HeaderAdminComponent
+    HeaderAdminComponent,
+    PageDetailsVehiculeComponent
 
   ],
   imports: [

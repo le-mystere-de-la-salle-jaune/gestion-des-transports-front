@@ -1,0 +1,50 @@
+<br />
+
+<div>
+    <h2><a routerLink="/admin/vehicules">Vehicules</a> <b> > </b> {{vehiculeDetail?.immatriculation}}</h2>
+</div>
+
+<br/>
+<br/>
+
+<div class="row">
+    <div class="col-3">
+        <img src="{{vehiculeDetail?.photoUrl}}" style="max-width:100%" width="250" height="200" >
+    </div>
+
+    <div class="col-3">
+        <br />
+        <h4>{{vehiculeDetail?.marque}}</h4>
+        <h4>{{vehiculeDetail?.modele}}</h4>
+        <h4>{{vehiculeDetail?.categorie}}</h4>
+        <h4>{{vehiculeDetail?.etat}}</h4>
+        <br />
+    </div>
+    
+    <div class="col-6">
+        <button type="submit" [disabled]="vehiculeEstHorsService()" #estHorsService class="btn btn-default pull-right" (click)="mettreEnReparation()">Mettre en réparation</button>
+        <button type="submit" [disabled]="vehiculeEstEnReparation()" #estEnReparation class="btn btn-default pull-right" (click)="mettreEnService()">Mettre en service</button>
+        <button type="submit" [disabled]="vehiculeEstEnService()" #estEnService class="btn btn-default pull-right btn-red" (click)="mettreHorsService()">Hors service</button>
+    </div>
+</div>
+
+<br /><br />
+
+<div class="row">
+   <b> Prochaines réservations </b>
+</div>
+
+<div class="col-12 col-sm-3" *ngFor="let rs of listeReservation" style="margin:1%">
+    
+</div>
+
+
+<div class="row">
+    <b> Historiques des réservations </b>
+</div>
+     
+<div class="col-12 col-sm-3" *ngFor="let rsh of listeReservationHistorique" style="margin:1%">
+     
+</div>
+
+
