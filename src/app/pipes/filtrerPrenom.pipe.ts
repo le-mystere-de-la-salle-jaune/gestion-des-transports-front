@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Collaborateur } from './domains';
+import {Collaborateur} from './../domains';
 
 @Pipe({
   name: 'filtrerPrenom'

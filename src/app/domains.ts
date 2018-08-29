@@ -19,6 +19,18 @@ export class Adresse{
     }
 }
 
+export class ReservationSociete {
+    constructor(
+        public id:number,
+        public date_debut:Date,
+        public date_fin:Date,
+        public marque:string,
+        public modele:string,
+        public immatriculation:string,
+    ) {}
+}
+
+
 export class Vehicule
 {
     constructor(public id:number,public photoUrl:string,public immatriculation:string,public marque:string,public modele:string, public categorie:string,public places:number,public societe:boolean)
@@ -65,6 +77,4 @@ export enum Permis
     PERMIS_D = "Permis D",
     PERMIS_E = "Permis E"
 }
-
-
   
