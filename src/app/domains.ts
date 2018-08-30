@@ -33,7 +33,7 @@ export class ReservationSociete {
 
 export class Vehicule
 {
-    constructor(public id:number,public photoUrl:string,public immatriculation:string,public marque:string,public modele:string, public categorie:string,public places:number,public societe:boolean)
+    constructor(public id:number,public photoUrl:string,public immatriculation:string,public marque:string,public modele:string, public categorie:string,public places:number,public societe:boolean, public etat:string)
     {
    
     }
