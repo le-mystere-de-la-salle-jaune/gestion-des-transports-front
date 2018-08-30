@@ -4,9 +4,10 @@ import { Annonce } from './publier-annonce.service';
 import { environment } from '../environments/environment';
 import { HttpHeaders } from '@angular/common/http';
 
-const httpOptions = {
+const httpHeader = {
   headers: new HttpHeaders({
-    "Content-Type" : "application/json"
+    "Content-Type" : "application/json",
+    "email" : sessionStorage.getItem("email")
   })
 }
 
@@ -22,7 +23,7 @@ export class ListerAnnonceService {
     
     return this._http.get(
       environment.listerAnnonceUrl,
-      httpOptions
+      httpHeader
     )
     .toPromise()
     .then((data: any) => {

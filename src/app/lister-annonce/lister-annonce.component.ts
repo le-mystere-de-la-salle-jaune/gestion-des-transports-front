@@ -17,6 +17,7 @@ export class ListerAnnonceComponent implements OnInit {
   ngOnInit() {
     this._listerAnnonceService.getAnnonce().then((annonceTab:Annonce[]) => {
       this.listeAnnonce = annonceTab
+      console.log(this.listeAnnonce)
     })
   }
 
