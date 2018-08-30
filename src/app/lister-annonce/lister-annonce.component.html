@@ -1,0 +1,105 @@
+<a class="btn btn-primary" routerLink="creer">Publier une annonce</a>
+<div class="card">
+    <div class="card-body" (click)="societe.toggle()" mdbWavesEffect>
+        <h4>Covoiturage</h4>
+    </div>
+    <div class="clearfix">
+        <div class="card card-cascade narrower">
+            <div class="px-4 mb-3 mt-4">
+                <!--Table des réservations en cours-->
+                <div class="mb-3 mt-4">
+                    <h5>Réservations en cours</h5>
+                </div>
+                <table class="table table-hover table-responsive-md mb-0">
+
+                    <!--Table head-->
+                    <thead>
+                        <tr>
+                            <th class="th-lg">Date / heure de départ</th>
+                            <th class="th-lg">Lieu de départ</th>
+                            <th class="th-lg">Lieu de destination</th>
+                            <th class="th-lg">Nombre de voyageur</th>
+                            <th class="th-lg"></th>
+                        </tr>
+                    </thead>
+                    <!-- end Table head-->
+
+                    <!--Table body-->
+                    <tbody>
+                        <tr *ngFor="let reservation of listeReservations | FiltrerReservation:reservationFuture">
+                            <td>{{reservation.depart}}</td>
+                            <td>{{reservation.adresse_depart.ville}}</td>
+                            <td>{{reservation.adresse_arriver.ville}}</td>
+                            <td>{{reservation.adresse_arriver.ville}}</td>
+                            <td>
+                                <button type="button" mdbBtn color="indigo" size="sm" rounded="true" data-toggle="modal" data-target="#basicExample" (click)="openModal(reservation.id)"
+                                    mdbWavesEffect>Détails</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <!--end Table body-->
+                </table>
+                <hr class="my-0">
+
+                <!--Table des historiques-->
+                <div class="mb-3 mt-4">
+
+                    <h5>Historique</h5>
+                </div>
+                <table class="table table-hover table-responsive-md mb-0">
+
+                    <!--Table head-->
+                    <thead>
+                        <tr>
+                                <th class="th-lg">Date / heure de départ</th>
+                                <th class="th-lg">Lieu de départ</th>
+                                <th class="th-lg">Lieu de destination</th>
+                                <th class="th-lg">Nombre de voyageur</th>
+                                <th class="th-lg"></th>
+                        </tr>
+                    </thead>
+                    <!--Table head-->
+
+                    <!--Table body-->
+                    <tbody>
+                        <tr *ngFor="let reservation of pagedListeReservations | FiltrerReservation:reservationPassee">
+                            <td>{{reservation.depart}}</td>
+                            <td>{{reservation.adresse_depart.ville}}</td>
+                            <td>{{reservation.adresse_arriver.ville}}</td>
+                            <td>{{reservation.adresse_arriver.ville}}</td>
+                        </tr>
+                    </tbody>
+                    <!--Table body-->
+                </table>
+            </div>
+            <!--end Table des historiques-->
+            <hr class="my-0">
+
+            <!--Bottom Table pagination-->
+            <div class="d-flex justify-content-center">
+
+                <!-- pager -->
+                <nav class="my-4 pt-2">
+                    <ul class="pagination pagination-circle pg-purple mb-0" *ngIf="pager.pages && pager.pages.length" class="pagination">
+                        <li class="page-item clearfix d-none d-md-block" [ngClass]="{disabled:pager.currentPage === 1}">
+                            <a class="page-link" (click)="setPage(1)">Première page</a>
+                        </li>
+                        <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                            <a class="page-link" (click)="setPage(pager.currentPage - 1)">Précédent</a>
+                        </li>
+                        <li class="page-item" *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                            <a class="page-link waves-light" (click)="setPage(page)">{{page}}</a>
+                        </li>
+                        <li class="page-item" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                            <a class="page-link" (click)="setPage(pager.currentPage + 1)">Suivant</a>
+                        </li>
+                        <li class="page-item clearfix d-none d-md-block" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                            <a class="page-link" (click)="setPage(pager.totalPages)">Dernière page</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <!--end Bottom Table pagination-->
+        </div>
+    </div>
+</div>
