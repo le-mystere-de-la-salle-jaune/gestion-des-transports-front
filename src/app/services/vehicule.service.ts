@@ -33,9 +33,9 @@ export class VehiculeService
 
   trouverVehiculeParId(id:number):Promise<Vehicule>
   {
-    return this._http.get(`${URL_BACKEND}/${API_VH}/societe/${id}`)
+    return this._http.get(`${URL_BACKEND}/${API_VH}/${id}`)
     .toPromise()
-    .then((el: any) => new Vehicule(el.id,el.photoUrl, el.immatriculation,el.marque, el.modele, el.categorie, undefined, undefined,el.etat));
+    .then((el: any) => new Vehicule(el.id,el.photoUrl, el.immatriculation,el.marque, el.modele, el.categorie, el.places, el.societe,el.etat));
   }
 
   modifierVehicule(ngForm)

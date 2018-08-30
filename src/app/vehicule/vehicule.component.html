@@ -1,8 +1,8 @@
 <div class="card text-center">
     <div class="card-body">
-        <img src="{{vehicule?.photoUrl}}" alt="{{vehicule?.immatriculation}}" style="max-width:100%" width="100" height="100" >
+        <img src="{{vehicule?.photoUrl}}" alt="{{vehicule?.immatriculation}}" style="max-width:100%" width="150" height="100" >
     </div>
-    <div class="card-footer text-muted">
+    <div class="card-footer text-muted" style="border:0px;">
         <div>
             <p>
                 {{vehicule.immatriculation}}<br/>
@@ -10,10 +10,24 @@
                 {{vehicule?.categorie}}
             </p>
         </div>
-        <div>
-            <button type="button" mdbBtn color="default" rounded="true"  (click)="details(vehicule.id)" mdbWavesEffect>Détails</button>
-            <button type="button" mdbBtn color="default" rounded="true" data-toggle="modal" data-target="#frameModalTop" (click)="modifier()" mdbWavesEffect>Modfier</button>
-            <button type="button" mdbBtn color="default" rounded="true"  (click)="supprimer()" mdbWavesEffect>Supprimer</button>
+        <div class="row">
+          <div class="col-12">
+            <div *ngIf="vehicule.etat == 'En service'">
+              <button color="indigo" mdbwaveseffect="" rounded="true"  type="button" class="btn btn-indigo btn-rounded btn-lg btn-block" ng-reflect-color="cindigo" ng-reflect-rounded="true" ng-reflect-size="sm" (click)="details(vehicule.id)">Détails</button>
+            </div>
+            <div *ngIf="vehicule.etat == 'En réparation'">
+                <button color="yellow" mdbwaveseffect="" rounded="true"  type="button" class="btn btn-yellow btn-rounded btn-lg btn-block" ng-reflect-color="yellow" ng-reflect-rounded="true" ng-reflect-size="sm" (click)="details(vehicule.id)">Détails</button>
+            </div>
+            <div *ngIf="vehicule.etat == 'Hors service'">
+                <button color="deep-orange" mdbwaveseffect="" rounded="true"  type="button" class="btn btn-deep-orange btn-rounded btn-lg btn-block" ng-reflect-color="deep-orange" ng-reflect-rounded="true" ng-reflect-size="sm" (click)="details(vehicule.id)">Détails</button>
+            </div>
+          </div>
+          <div class="col-12"> 
+            <button color="indigo" mdbbtn="" mdbwaveseffect="" rounded="true" size="" type="button" class="btn btn-indigo btn-rounded btn-lg btn-block" ng-reflect-color="indigo" ng-reflect-rounded="true" ng-reflect-size="sm" (click)="modifier()">Modifier</button>
+          </div> 
+          <div class="col-12"> 
+            <button color="indigo" mdbbtn="" mdbwaveseffect="" rounded="true" size="" type="button" class="btn btn-indigo btn-rounded btn-lg btn-block" ng-reflect-color="indigo" ng-reflect-rounded="true" ng-reflect-size="sm" (click)="supprimer()">Supprimmer</button>
+          </div>
         </div>
     </div>
   </div>

@@ -81,4 +81,6 @@ export class VehiculeComponent implements OnInit {
     this._vh.supprimerVehicule(this.vehicule.id);
     location.reload()
   }
+
+  
 }

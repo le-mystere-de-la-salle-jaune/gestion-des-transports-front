@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { VehiculeService } from '../services/vehicule.service';
-import { Vehicule, Etat} from '../domains';
+import { Vehicule } from '../domains';
 
 @Component({
   selector: 'app-page-details-vehicule',
@@ -13,8 +13,9 @@ export class PageDetailsVehiculeComponent implements OnInit {
   idVehiculeDetail:number
   vehiculeDetail:Vehicule
   newEtatVehicule:Vehicule
-  listeEtat:string[]
-  numEtat:number
+
+  etat:string
+
   @ViewChild("estEnReparation")
   estEnReparation:boolean
   @ViewChild("estEnService")
@@ -31,14 +32,18 @@ export class PageDetailsVehiculeComponent implements OnInit {
       this.vehiculeDetail=vehicule;
     });
     
-    this.estEnReparation = false;
-    this.estEnService = true;
-    this.estHorservice = false;
+  }
+
+  verificationEtatInit()
+  {
+    this.vehiculeEstEnReparation();
+    this.vehiculeEstHorsService();
+    this.vehiculeEstEnService();
   }
 
   vehiculeEstEnService():boolean
   {
-    if(this.vehiculeDetail.etat == Etat.EN_SERVICE)
+    if(this.vehiculeDetail.etat == "En service")
     {
       this.estEnReparation = false
       this.estEnService = true
@@ -53,7 +58,7 @@ export class PageDetailsVehiculeComponent implements OnInit {
 
   vehiculeEstHorsService():boolean
   {
-    if(this.vehiculeDetail.etat == Etat.HORS_SERVICE)
+    if(this.vehiculeDetail.etat == "Hors service")
     {
       this.estEnReparation = false
       this.estEnService = false
@@ -68,7 +73,7 @@ export class PageDetailsVehiculeComponent implements OnInit {
 
   vehiculeEstEnReparation():boolean
   {
-    if(this.vehiculeDetail.etat == Etat.EN_REPARATION)
+    if(this.vehiculeDetail.etat == "En réparation")
     {
       this.estEnReparation = true
       this.estEnService = false
@@ -82,39 +87,31 @@ export class PageDetailsVehiculeComponent implements OnInit {
 
   mettreHorsService()
   {
-    this.vehiculeDetail.etat = Etat.HORS_SERVICE
-    this._Vh.trouverVehiculeParId(this.idVehiculeDetail).then((vehicule:Vehicule) => {
-      this.newEtatVehicule=vehicule;
-      this.newEtatVehicule.etat= this.vehiculeDetail.etat
-    });    
+    this.etat = "Hors service"
+    this.newEtatVehicule = this.vehiculeDetail
+    this.newEtatVehicule.etat = this.etat
     this._Vh.modifierVehicule(this.newEtatVehicule)
   }
 
   mettreEnReparation()
   {
-    this.vehiculeDetail.etat = Etat.EN_REPARATION
-    this._Vh.trouverVehiculeParId(this.idVehiculeDetail).then((vehicule:Vehicule) => {
-      this.newEtatVehicule=vehicule;
-      this.newEtatVehicule.etat= this.vehiculeDetail.etat
-    });    
+    this.etat = "En réparation"
+    this.newEtatVehicule = this.vehiculeDetail
+    this.newEtatVehicule.etat = this.etat
     this._Vh.modifierVehicule(this.newEtatVehicule)
   }
 
   mettreEnService()
   {
-    this.vehiculeDetail.etat = Etat.EN_SERVICE
-    this._Vh.trouverVehiculeParId(this.idVehiculeDetail).then((vehicule:Vehicule) => {
-      this.newEtatVehicule=vehicule;
-      this.newEtatVehicule.etat= this.vehiculeDetail.etat
-    });    
+    this.etat = "En service"
+    this.newEtatVehicule = this.vehiculeDetail
+    this.newEtatVehicule.etat = this.etat
     this._Vh.modifierVehicule(this.newEtatVehicule)
   }
 
   ngOnInit() {
-
-    this.listeEtat.push(Etat.EN_SERVICE)
-    this.listeEtat.push(Etat.HORS_SERVICE)
-    this.listeEtat.push(Etat.EN_REPARATION)
-
+    console.log(this.vehiculeDetail.etat)
+    this.etat = this.vehiculeDetail.etat;
+    console.log(this.etat)
   }
 }

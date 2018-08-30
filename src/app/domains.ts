@@ -40,13 +40,6 @@ export enum Categories
     SUV_TT_PICKUP= "SUV/Tout terrain/Pick-Up"
 }
 
-export enum Etat
-{
-    EN_SERVICE = "En service",
-    HORS_SERVICE = "Hors service",
-    EN_REPARATION = "En réparation"
-}
-
 export class Collaborateur
 {
     constructor(public id:number, public nom:string, public prenom:string, public email:string,
