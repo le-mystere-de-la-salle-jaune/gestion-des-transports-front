@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { Collaborateur } from '../domains';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import { NgForm } from '@angular/forms';
+import { environment } from '../../environments/environment';
 
-const URL_BACKEND = `http://localhost:8080`;
-const API_VH = `api/collaborateurs`;
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +19,7 @@ export class CollaborateurService
 
   listerChauffeur():Promise<Collaborateur[]>  
   {
-    return this._http.get(`${URL_BACKEND}/${API_VH}/chauffeurs`)
+    return this._http.get(`${environment.baseUrl}${environment.apiCollaborateurChauffeur}`)
     .toPromise()
     .then((data: any) => data.map(el => new Collaborateur(el.id, el.nom, el.prenom, el.email,
         el.motDePasse,el.matricule,el.permis,el.telephone,el.roles,el.photoUrl)));
@@ -30,7 +29,7 @@ export class CollaborateurService
 
   trouverChauffeurParId(id:number)
   {
-    return this._http.get(`${URL_BACKEND}/${API_VH}/${id}`)
+    return this._http.get(`${environment.baseUrl}${environment.apiCollaborateur}/${id}`)
     .toPromise()
     .then((el: any) => new Collaborateur(el.id, el.nom, el.prenom, el.email,
         el.motDePasse,el.matricule,el.permis,el.telephone,el.roles,el.photoUrl));
@@ -38,7 +37,7 @@ export class CollaborateurService
 
   trouverChauffeurParMatricule(matricule:string)
   {
-    return this._http.get(`${URL_BACKEND}/${API_VH}/chauffeurs/${matricule}`)
+    return this._http.get(`${environment.baseUrl}${environment.apiCollaborateurChauffeur}/${matricule}`)
     .toPromise()
     .then((el: any) => new Collaborateur(el.id, el.nom, el.prenom, el.email,
         el.motDePasse,el.matricule,el.permis,el.telephone,el.roles,el.photoUrl));
@@ -46,7 +45,7 @@ export class CollaborateurService
 
   ajouterUnChauffeur(matricule:string)
   {
-    return this._http.put(`${URL_BACKEND}/${API_VH}/chauffeurs`,matricule)
+    return this._http.put(`${environment.baseUrl}${environment.apiCollaborateurChauffeur}`,matricule)
     .toPromise()
     .then((el: any) => new Collaborateur(el.id, el.nom, el.prenom, el.email,
         el.motDePasse,el.matricule,el.permis,el.telephone,el.roles,el.photoUrl));
