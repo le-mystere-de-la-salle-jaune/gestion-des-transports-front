@@ -8,5 +8,8 @@ export const config = {
   apiLogin: 'login',
   apiLogout: 'logout',
   apiAuthMe: 'me',
-  apiCreerReservation: 'reserver/creer'
+  apiCreerReservation: 'reserver/creer',
+  apiListerVoitureReservation : 'api/listeVoitureSociete',
+  reservationsApi: 'api/reservations/',
+  ajouterReservationSociete : 'api/AjouterReservation'
 };

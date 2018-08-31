@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { Vehicule } from './class'
 import { ReservationService } from '../services/reservation.service';
+import { DateDebutFin, ReserverAfficherVehicule, ReserverVehicule } from '../domains';
 
 @Component({
   selector: 'app-reservation-societe',
@@ -10,34 +11,35 @@ import { ReservationService } from '../services/reservation.service';
 export class ReservationSocieteComponent implements OnInit {
 
   dateDep: string;
-  heureDep: number;
-  minuteDep: number;
+  dateDepart:string;
+  heureDepart:number;
+  heureDep: string;
+  minuteDep: string;
+  minuteDepart:number;
 
   dateArr: string;
-  heureArr: number;
-  minuteArr: number;
+  dateArrivee: string;
+  heureArr: string;
+  heureArrivee: string;
+  minuteArr: string;
+  minuteArrivee: string;
 
-  vehicules: Array<Vehicule> = [];
-  vehicule:Vehicule;
+  displayCar:boolean = false;
+
+  vehicules: Array<ReserverAfficherVehicule> = [];
+  vehicule:ReserverAfficherVehicule;
 
   carouselIndex:number = 0;
 
+  crenau:DateDebutFin;
+
+
   constructor(public reservationService:ReservationService) {
-    this.vehicules.push(new Vehicule('https://www.fly-car.fr/img/categories/location-voiture-tourisme-citadine.png', 'AZ-595-FQ', 'Renault', 'Clio', 'CITADINE', false));
-    this.vehicules.push(new Vehicule('https://www.fly-car.fr/img/categories/location-voiture-tourisme-citadine.png', 'FD-595-KI', 'Renault', 'Clio', 'CITADINE', false));
-    this.vehicules.push(new Vehicule('https://www.fly-car.fr/img/categories/location-voiture-tourisme-citadine.png', 'HG-295-DH', 'Renault', 'Clio', 'CITADINE', true));
-    this.vehicules.push(new Vehicule('https://www.fly-car.fr/img/categories/location-voiture-tourisme-citadine.png', 'HG-595-GF', 'Renault', 'Clio', 'CITADINE', false));
+
   }
 
   ngOnInit() {
-    /*
-    this.reservationService.listeVehiculeSociete().subscribe(
-      (listeVehicule:Array<Vehicule>) => this.vehicules = listeVehicule,
-      (err:any) => console.log(err)
-    );
-    */
-
-    this.vehicule = this.vehicules[this.carouselIndex];
+    
   }
 
   precedent() {
@@ -62,6 +64,44 @@ export class ReservationSocieteComponent implements OnInit {
     }
   }
 
+  demanderVehicule(){
+    let dateDepart = { "date" : this.dateDepart, "heure" : +this.heureDepart, "minute" : +this.minuteDepart }
+    let dateArrivee = { "date" : this.dateArrivee, "heure" : +this.heureArrivee, "minute" : +this.minuteArrivee }
 
+    this.crenau = new DateDebutFin(dateDepart, dateArrivee);
+    this.reservationService.listerVehiculePro(this.crenau)
+      .subscribe(
+        (data:Array<ReserverAfficherVehicule>) => { this.vehicules = data;
+          this.displayCar = true;
+          this.suivant();
+        },
+        (err: any) => {
+          console.log(err)
+        }
+      )
+    
+      this.vehicules.forEach(element => {
+        console.log(element);
+      });
+  }
+
+  saveVehicule(idVehicule:number) {
+    //this.creerReservation = new CreerReservation(this.annonceDetail.id, sessionStorage.getItem("email"), this.annonceDetail.depart, this.annonceDetail.adresse_arriver, this.annonceDetail.adresse_arriver)
+    let dateDepart = { "date" : this.dateDepart, "heure" : +this.heureDepart, "minute" : +this.minuteDepart }
+    let dateArrivee = { "date" : this.dateArrivee, "heure" : +this.heureArrivee, "minute" : +this.minuteArrivee }
+
+    let periode = new DateDebutFin(dateDepart, dateArrivee);
+    
+    let reservation:ReserverVehicule = new ReserverVehicule(periode, idVehicule, sessionStorage.getItem("email"));
+    this.reservationService.enregistrerReservation(reservation)
+      .subscribe(
+        (annonce: ReserverVehicule) => {
+          console.log("save");
+        },
+        (err: any) => {
+          console.log(err);
+        }
+      )
+  }
 
 }

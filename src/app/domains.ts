@@ -51,10 +51,47 @@ export class AdresseGoogleApi { adresseDep:PlaceAdress; adresseArr:PlaceAdress; 
 
 export class CreerReservation{
     constructor(public id_annonce:number,
-        public id_collegue:number,
+        public id_collegue:string,
         public depart:any,
         public adresse_depart:Adresse,
         public adresse_arriver:Adresse){
         }
 }
+
+export class DateHeure{
+    constructor(
+        public date,
+        public heure,
+        public minute
+    ){
+
+    }
+}
+
+export class DateDebutFin{
+    constructor(
+        public debut:DateHeure,
+        public fin:DateHeure
+    ){
+    }
+}
+
+export class ReserverAfficherVehicule{
+    constructor(
+        public id:number,
+        public url:string,
+        public marque:string,
+        public modele:string,
+        public immatriculation:string,
+        public dispo:boolean
+    ){}
+}
   
+export class ReserverVehicule{
+    constructor(
+	public creneau,
+	public vehicule,
+    public collab){
+        
+    }
+}

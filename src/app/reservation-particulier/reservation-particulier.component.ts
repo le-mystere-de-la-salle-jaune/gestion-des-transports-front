@@ -143,7 +143,7 @@ export class ReservationParticulierComponent implements OnInit {
   }
 
   sendReservation() {
-    this.creerReservation = new CreerReservation(this.annonceDetail.id, 1, this.annonceDetail.depart, this.annonceDetail.adresse_arriver, this.annonceDetail.adresse_arriver)
+    this.creerReservation = new CreerReservation(this.annonceDetail.id, sessionStorage.getItem("email"), this.annonceDetail.depart, this.annonceDetail.adresse_arriver, this.annonceDetail.adresse_arriver)
 
     this.creerReservationService.addReservation(this.creerReservation)
       .subscribe(
