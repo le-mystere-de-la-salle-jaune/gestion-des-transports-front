@@ -11,9 +11,9 @@ export class FiltrerReservationPipe implements PipeTransform {
   
   transform(value, reservationFuture) {
     if(reservationFuture == true) {
-      return value.filter(reservation => (reservation.depart || reservation.date_debut) > this.dateNowParse)
+      return value.filter(reservation => ((reservation.depart || reservation.date_debut) > this.dateNowParse) && (reservation.statut != "Annulé")) ;
     } else {
-      return value.filter(reservation => (reservation.depart || reservation.date_debut)  < this.dateNowParse);
+      return value.filter(reservation => ((reservation.depart || reservation.date_debut)  < this.dateNowParse) || (reservation.statut == "Annulé"));
     }
   }
 }

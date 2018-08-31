@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class VehiculeComponent implements OnInit {
 
   @Input() vehicule:Vehicule
-  newVehicule:Vehicule=new Vehicule(undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined)
+  newVehicule:Vehicule=new Vehicule(undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined)
 
 
   optionsSelectPlaces:Array<number>=[]
@@ -49,7 +49,12 @@ export class VehiculeComponent implements OnInit {
     this.vehicule.categorie = this.optionsSelectCategories[this.numCategorie]
     this._vh.modifierVehicule(this.vehicule)
     this.frame.hide()
-    this.newVehicule = new Vehicule(undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined)
+    this.newVehicule = new Vehicule(undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined)
+  }
+
+  details(id:number)
+  {
+    this.router.navigate([`/admin/vehicules/${id}`])
   }
 
   modifier()
@@ -76,4 +81,6 @@ export class VehiculeComponent implements OnInit {
     this._vh.supprimerVehicule(this.vehicule.id);
     location.reload()
   }
+
+  
 }

@@ -1,0 +1,103 @@
+<div class="jumbotron">
+        <p>Critères</p>
+    
+        <div class="form-group row">
+            <label for="depart" class="col-sm-2 col-form-label">Adresse de départ</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="depart" #addressInput>
+            </div>
+            <label for="arriver" class="col-sm-2 col-form-label">Adresse de destination</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="arriver" #adressOuput>
+            </div>
+            <label for="duree" class="col-sm-2 col-form-label">Durée du trajet</label>
+            <div class="col-sm-2">
+                <input type="text" readonly class="form-control" id="duree" value="{{duree}}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="dateDepart" class="col-sm-2 col-form-label">Date de départ</label>
+            <div class="col-sm-3">
+                <input type="date" class="form-control" id="dateDepart" [(ngModel)]=dateSeletionner>
+            </div>
+            <label for="distance" class="col-sm-2 col-form-label offset-md-3">Distance</label>
+            <div class="col-sm-2">
+                <input type="text" readonly class="form-control" id="distance" value="{{distanceKm}}">
+            </div>
+        </div>
+        <p (click)="test.toggle()" mdbWavesEffect>Covoiturages</p>
+        <div class="" [mdbCollapse]="isCollapsed" #test="bs-collapse">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Date/Heure</th>
+                        <th scope="col">Départ</th>
+                        <th scope="col">Destination</th>
+                        <th scope="col">Véhicule</th>
+                        <th scope="col">Chauffeur</th>
+                        <th scope="col">Place disponibles</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let annonce of annonces | filtrerDate:dateSeletionner | filtrerDestination:destinationSelectionner">
+                    <tr>
+                        <td scope="row" class="align-middle">{{annonce.dateDepart | date:'dd/MM/yyyy hh:mm'}}</td>
+                        <td scope="row" class="align-middle">{{annonce.adresse_depart.ville}}</td>
+                        <td scope="row" class="align-middle">{{annonce.adresse_arriver.ville}}</td>
+                        <td scope="row" class="align-middle">{{annonce.vehicule}}</td>
+                        <td scope="row" class="align-middle">{{annonce.chauffeur}}</td>
+                        <td scope="row" class="align-middle">{{annonce.place}}</td>
+                        <td scope="row">
+                            <button type="button" class="button btn-primary" mdbBtn color="default" *ngIf="annonce.place > 0;else noReservation" rounded="true"
+                                data-toggle="modal" data-target="#basicExample" (click)="afficherInfo(annonce.id)" mdbWavesEffect>Réserver</button>
+                            <ng-template #noReservation>
+                                <button type="button" class="btn btn-primary" disabled="disabled">Réserver</button>
+                            </ng-template>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">Réservation d'un covoiturage</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body mx-3">
+                    <table *ngIf="afficher">
+                        <tr>
+                            <th>Départ</th>
+                            <td>{{annonceDetail.adresse_depart.ville}}</td>
+                        </tr>
+                        <tr>
+                            <th>Destination</th>
+                            <td>{{annonceDetail.adresse_arriver.ville}}</td>
+                        </tr>
+                        <tr>
+                            <th>Date/heure</th>
+                            <td>{{annonceDetail.dateDepart | date:'dd/MM/yyyy hh:mm' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Véhicule</th>
+                            <td>{{annonceDetail.vehicule}}</td>
+                        </tr>
+                        <tr>
+                            <th>Chauffeur</th>
+                            <td>{{annonceDetail.chauffeur}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button mdbBtn color="default" class="waves-light" (click)="frame.hide()" mdbWavesEffect>Annuler</button>
+                    <button mdbBtn color="default" class="waves-light" (click)="sendReservation()" mdbWavesEffect>Confirmer</button>
+                </div>
+            </div>
+        </div>
+    </div>

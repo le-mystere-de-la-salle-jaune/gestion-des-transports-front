@@ -1,0 +1,79 @@
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-3 text-right " style="margin-top:0.6em;">Date/heure de réservation</div>
+        <div class="col-2 text-left" style="margin-top:0.4em;">
+            <input type="date" id="dateHeure" class="form-control form-control-sm" [(ngModel)]="dateDepart"
+                required>
+                {{dateDepart}}
+        </div>
+        <div class="col-1" style="margin-top:0.5em;">
+            <mdb-icon icon="calendar" size="lg"></mdb-icon>
+        </div>
+        <div class="col-2" style="margin-top:0.5em;">
+            <select id="selectionHeure" class="form-control form-control-sm" [(ngModel)]="heureDepart">
+                <option *ngFor='let heure of [01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]' value="{{heure}}">{{heure}}</option>
+            </select>
+        </div>
+        <label for="selectionHeure" class="col-form-label">h</label>
+        <div class="col-2" style="margin-top:0.5em;">
+            <select id="selectMin" class="form-control form-control-sm" [(ngModel)]="minuteDepart">
+                <option *ngFor='let heure of [00,10,20,30,40,50]' value="{{heure}}">{{heure}}</option>
+            </select>
+        </div>
+        <label for="selectMin" class="col-form-label">m</label>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-3 text-right " style="margin-top:0.6em;">Date/heure de retour</div>
+        <div class="col-2 text-left" style="margin-top:0.4em;">
+            <input type="date" id="dateHeure" class="form-control form-control-sm" [(ngModel)]="dateArrivee" 
+                #champDate="ngModel" required>
+        </div>
+        <div class="col-1" style="margin-top:0.5em;">
+            <mdb-icon icon="calendar" size="lg"></mdb-icon>
+        </div>
+        <div class="col-2" style="margin-top:0.5em;">
+            <select id="selectionHeure" class="form-control form-control-sm" [(ngModel)]="heureArrivee">
+                <option *ngFor='let heure of [01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]' value="{{heure}}">{{heure}}</option>
+            </select>
+        </div>
+        <label for="selectionHeure" class="col-form-label">h</label>
+        <div class="col-2" style="margin-top:0.5em;">
+            <select id="selectMin" class="form-control form-control-sm" [(ngModel)]="minuteArrivee">
+                <option *ngFor='let heure of [00,10,20,30,40,50]' value="{{heure}}">{{heure}}</option>
+            </select>
+        </div>
+        <label for="selectMin" class="col-form-label">m</label>
+    </div>
+    <div>
+        <button mdbBtn (click)="demanderVehicule()">Chercher</button>
+    </div>
+    <br>
+    <br>
+
+    <div *ngIf="displayCar == true">
+        <div class="row justify-content-center">
+            <div class="align-middle">
+                <p mdbBtn floating="true" size="lg" mdbWavesEffect style="margin-top: 100px;" (click)="precedent()">
+                    <mdb-icon icon="arrow-left"></mdb-icon>
+                </p>
+            </div>
+            <p src="" alt="" class="chevron-circle-left"></p>
+            <img src="{{vehicule?.url}}" alt="" style="max-width:100%" width="420" height="250">
+            <div class="align-middle">
+                <p mdbBtn floating="true" size="lg" mdbWavesEffect style="margin-top: 100px;" (click)="suivant()">
+                    <mdb-icon icon="arrow-right"></mdb-icon>
+                </p>
+            </div>
+        </div>
+        <div class="form-group text-center">
+            <h4>{{vehicule?.immatriculation}}</h4>
+            <h5>{{vehicule?.marque}} - {{vehicule?.modele}}</h5>
+            <h5>{{vehicule?.categorie}}</h5>
+            <button mdbBtn type="button" color="default" *ngIf="!vehicule?.estReservee" class="waves-light" (click)="saveVehicule(vehicule?.id)" mdbWavesEffect>Réserver</button>
+            <button mdbBtn type="button" color="danger" *ngIf="vehicule?.estReservee" class="waves-light" mdbWavesEffect disabled="disabled">Réserver</button>
+        </div>
+    </div>
+</div>

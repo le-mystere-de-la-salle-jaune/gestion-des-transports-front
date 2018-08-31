@@ -1,6 +1,8 @@
 <div class="mb-3 mt-4">
     <h1>Mes réservations</h1>
-
+    <div class="clearfix">
+        <button mdbBtn color="cyan" class="float-right" (click)="reserver()">Réserver un transport</button>
+    </div>
     <!--Collapse Covoiturage-->
     <div class="card">
         <div class="card-body" (click)="societe.toggle()" mdbWavesEffect>
@@ -33,8 +35,10 @@
                                 <td>{{reservation.adresse_depart.ville}}</td>
                                 <td>{{reservation.adresse_arriver.ville}}</td>
                                 <td>
-                                    <button type="button" mdbBtn color="indigo" size="sm" rounded="true" data-toggle="modal" data-target="#basicExample" (click)="openModal(reservation.id)"
+                                    <button type="button" mdbBtn color="indigo" size="sm" rounded="true" data-toggle="modal" data-target="#basicExample" (click)="openModalDetails(reservation.id)"
                                         mdbWavesEffect>Détails</button>
+                                    <button type="button" mdbBtn color="danger" size="sm" rounded="true" data-toggle="modal" data-target="#basicExample" (click)="openModalCancel(reservation.id)"
+                                        mdbWavesEffect>Annuler</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -55,6 +59,7 @@
                                 <th class="th-lg">Date / heure</th>
                                 <th class="th-lg">Départ</th>
                                 <th class="th-lg">Destination</th>
+                                <th class="th-lg">Statut</th>
                                 <th class="th-lg"></th>
                             </tr>
                         </thead>
@@ -66,8 +71,9 @@
                                 <td>{{reservation.depart}}</td>
                                 <td>{{reservation.adresse_depart.ville}}</td>
                                 <td>{{reservation.adresse_arriver.ville}}</td>
+                                <td>{{reservation.statut}}</td>
                                 <td>
-                                    <button type="button" mdbBtn color="indigo" size="sm" rounded="true" data-toggle="modal" data-target="#basicExample" (click)="openModal(reservation.id)"
+                                    <button type="button" mdbBtn color="indigo" size="sm" rounded="true" data-toggle="modal" data-target="#basicExample" (click)="openModalDetails(reservation.id)"
                                         mdbWavesEffect>Détails</button>
                                 </td>
                             </tr>
@@ -144,7 +150,6 @@
                                     <td>{{reservationSociete.immatriculation}}</td>
                                     <td>{{reservationSociete.marque}}</td>
                                     <td>{{reservationSociete.modele}}</td>
-
                                 </tr>
                             </tbody>
                             <!--end Table body-->
@@ -219,7 +224,7 @@
     <!--end Collapse Véhicule de société-->
 </div>
 
-<!--Configuration Modal-->
+<!--Configuration Modal Details-->
 <div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-notify modal-info" role="document">
@@ -264,6 +269,34 @@
                 </div>
             </div>
         </div>
-        <!--Fin configuration Modal-->
     </div>
 </div>
+ <!--Fin configuration Modal Details-->
+
+ <!--Configuration Modal Cancel-->
+<div mdbModal #frameCancel="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-notify modal-info" role="document">
+    <!--Content-->
+    <div class="modal-content">
+        <!--Header-->
+        <div class="modal-header">
+            <p class="heading lead">Etes-vous sûr de vouloir annuler cette réservation ?</p>
+
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frameCancel.hide()">
+                <span aria-hidden="true" class="white-text">&times;</span>
+            </button>
+        </div>
+
+        <!--Body-->
+        <div class="modal-body">
+            <!--Footer-->
+            <div class="modal-footer justify-content-center">
+                <a type="button" mdbBtn color="primary" outline="true" class="waves-effect" mdbWavesEffect (click)="frameCancel.hide()">Annuler</a>
+                <a type="button" mdbBtn color="primary" class="waves-effect" mdbWavesEffect (click)="confirmCancel()">Confirmer</a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!--Fin configuration Modal Cancel-->

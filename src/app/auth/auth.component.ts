@@ -49,7 +49,7 @@ import { Key } from 'protractor';
             <input type="submit" mdbBtn color="primary" sclass="waves-light" mdbWavesEffect value="Se connecter" (click)="connecter()">
           </div>
           <div *ngIf="err" class="text-danger">
-            Tu ne te connecteras pas !
+            Oups, impossible de vous connecter
           </div>
         </form>
       </mdb-card-body>
