@@ -12,7 +12,7 @@
         <img src="{{vehiculeDetail?.photoUrl}}" style="max-width:100%" width="250" height="200" >
     </div>
 
-    <div class="col-3">
+    <div class="col-6">
         <br />
         <h4>{{vehiculeDetail?.marque}}</h4>
         <h4>{{vehiculeDetail?.modele}}</h4>
@@ -20,10 +20,16 @@
         <h4>{{vehiculeDetail?.etat}}</h4>
         <br />
     </div>
-    <div class="col-6">
-        <button type="submit" [disabled]="vehiculeEstHorsService()" #estHorsService class="btn btn-default pull-right" (click)="mettreEnReparation()">Mettre en réparation</button>
-        <button type="submit" [disabled]="vehiculeEstEnReparation()" #estEnReparation class="btn btn-default pull-right" (click)="mettreEnService()">Mettre en service</button>
-        <button type="submit" [disabled]="vehiculeEstEnService()" #estEnService class="btn btn-default pull-right btn-red" (click)="mettreHorsService()">Hors service</button>
+    <div class="col-3">
+        <div style="margin-bottom: 12%">
+            <button type="submit" [disabled]="vehiculeEstEnReparation()" #estEnReparation class="btn btn-default pull-right btn-block" (click)="mettreEnService()">Mettre en service</button>
+        </div>  
+        <div style="margin-bottom: 12%">
+            <button type="submit" [disabled]="vehiculeEstHorsService()" #estHorsService class="btn btn-default pull-right btn-block" (click)="mettreEnReparation()">Mettre en réparation</button>
+        </div>
+        <div>
+            <button type="submit" [disabled]="vehiculeEstEnService()" #estEnService class="btn btn-default pull-right btn-red btn-block" (click)="mettreHorsService()">Hors service</button>
+        </div>  
     </div>
 </div>
 
