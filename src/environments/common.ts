@@ -7,12 +7,18 @@ export const config = {
   apiActuator: 'actuator',
   apiLogin: 'login',
   apiLogout: 'logout',
-  apiAuthMe: 'me', 
+  apiAuthMe: 'me',
+  apiCreerReservation: 'reserver/creer',
+  apiListerVoitureReservation : 'api/listeVoitureSociete',
   reservationsApi: 'api/reservations',
+
   reservationsSocieteApi: 'api/reservationsSociete',
   apiVehicule : 'api/vehicules',
   apiVehiculeSociete : 'api/vehicules/societe',
   apiCollaborateur : 'api/collaborateurs',
   apiCollaborateurChauffeur : 'api/collaborateurs/chauffeurs'
+  reservationUpdate: 'api/reservation',
+  ajouterReservationSociete : 'api/AjouterReservation',
+  reservationsSocieteApi: 'api/reservationsSociete'
 
 };

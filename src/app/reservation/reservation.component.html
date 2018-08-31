@@ -1,0 +1,9 @@
+
+    <p (click)="covoiturage.toggle()">Covoiturage</p>
+    <div class="jumbotron" [mdbCollapse]="isCollapsed" #covoiturage="bs-collapse">
+        <app-reservation-particulier></app-reservation-particulier>
+    </div>
+    <p (click)="societe.toggle()">Covoiturage</p>
+    <div class="jumbotron" [mdbCollapse]="isCollapsed" #societe="bs-collapse">
+        <app-reservation-societe></app-reservation-societe>
+    </div>

@@ -12,7 +12,7 @@ import { PublierAnnonceComponent } from './publier-annonce/publier-annonce.compo
 import { AjoutItineraireComponent } from './ajout-itineraire/ajout-itineraire.component';
 import { AjoutVehiculeComponent } from './ajout-vehicule/ajout-vehicule.component';
 import { AjoutDateComponent } from './ajout-date/ajout-date.component';
-import { AgmCoreModule } from '@agm/core';
+
 
 import { FormsModule,ReactiveFormsModule } from "@angular/forms";
 
@@ -26,6 +26,12 @@ import { CollaborateurComponent } from './collaborateur/collaborateur.component'
 import { ReservationService } from './services/reservation.service';
 import { PaginationService } from './services/pagination.service';
 import { FiltrerReservationPipe } from './pipes/filtrer-reservation.pipe';
+import { ReservationSocieteComponent } from './reservation-societe/reservation-societe.component';
+import { ReservationParticulierComponent } from './reservation-particulier/reservation-particulier.component';
+import { AgmCoreModule } from '@agm/core';
+import { ReservationComponent } from './reservation/reservation.component';
+import { FiltrerPipeDate } from './pipes/FiltrePipeDate';
+import { FiltrerPipeDestination } from './pipes/FiltrePipeDestination';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { PageListeVehiculesComponent } from './page-liste-vehicules/page-liste-vehicules.component';
 import { PageListeChauffeursComponent } from './page-liste-chauffeurs/page-liste-chauffeurs.component';
@@ -41,6 +47,8 @@ import { ListeVehiculesComponent } from './liste-vehicules/liste-vehicules.compo
 import { VehiculeComponent } from './vehicule/vehicule.component';
 import { AdminComponent } from './admin/admin.component';
 import { HeaderAdminComponent } from './header/header-admin.component';
+import { ListerAnnonceComponent } from './lister-annonce/lister-annonce.component';
+import { PageAcceuilComponent } from './page-acceuil/page-acceuil.component';
 import { PageDetailsVehiculeComponent } from './page-details-vehicule/page-details-vehicule.component';
 
 const routes: Routes = [
@@ -53,11 +61,12 @@ const routes: Routes = [
     component: CollaborateurComponent, canActivate: [StatutConnecteService],
     children: [
       { path: 'reservations', component: CollabReservationsComponent },
+      { path: 'reservations/creer', component: ReservationComponent },
       { path: 'propositions/creer', component: CollaborateurComponent },
-      { path: 'annonces', component: CollabAnnoncesComponent },
       { path: 'statistiques', component: CollabStatistiquesComponent },
       { path: 'annonces/creer', component: PublierAnnonceComponent},
-      { path: '', redirectTo: 'collaborateur', pathMatch: 'full'}
+      { path: 'annonces', component: ListerAnnonceComponent},
+      { path: '', component: PageAcceuilComponent}
     ]
   },
   {
@@ -89,6 +98,11 @@ const routes: Routes = [
     CollabStatistiquesComponent,
     CollaborateurComponent,
     FiltrerReservationPipe,
+    ReservationSocieteComponent,
+    ReservationParticulierComponent,
+    ReservationComponent,
+    FiltrerPipeDate,
+    FiltrerPipeDestination,
     FiltrerPipeImma,
     FiltrerPipeMarque,
     FiltrerPipeMatricule,
@@ -103,6 +117,8 @@ const routes: Routes = [
     VehiculeComponent,
     AdminComponent,
     HeaderAdminComponent,
+    ListerAnnonceComponent,
+    PageAcceuilComponent
     PageDetailsVehiculeComponent
 
   ],
@@ -116,9 +132,7 @@ const routes: Routes = [
       apiKey: "AIzaSyAI-Xa9jqwXSzHVG3IKNKgT_J74qpx3Oo8",
       libraries: ["places"]
     }),
-
     ReactiveFormsModule
-
   ],
   providers: [
     ReservationService,
