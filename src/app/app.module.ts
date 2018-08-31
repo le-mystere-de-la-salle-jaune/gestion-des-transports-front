@@ -42,6 +42,7 @@ import { VehiculeComponent } from './vehicule/vehicule.component';
 import { AdminComponent } from './admin/admin.component';
 import { HeaderAdminComponent } from './header/header-admin.component';
 import { ListerAnnonceComponent } from './lister-annonce/lister-annonce.component';
+import { PageAcceuilComponent } from './page-acceuil/page-acceuil.component';
 
 const routes: Routes = [
 
@@ -57,7 +58,7 @@ const routes: Routes = [
       { path: 'statistiques', component: CollabStatistiquesComponent },
       { path: 'annonces/creer', component: PublierAnnonceComponent},
       { path: 'annonces', component: ListerAnnonceComponent},
-      { path: '', redirectTo: 'collaborateur', pathMatch: 'full'}
+      { path: '', component: PageAcceuilComponent}
     ]
   },
   {
@@ -102,7 +103,8 @@ const routes: Routes = [
     VehiculeComponent,
     AdminComponent,
     HeaderAdminComponent,
-    ListerAnnonceComponent
+    ListerAnnonceComponent,
+    PageAcceuilComponent
 
   ],
   imports: [

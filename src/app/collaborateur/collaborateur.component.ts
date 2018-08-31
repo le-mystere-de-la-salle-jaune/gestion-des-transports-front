@@ -5,8 +5,7 @@ import { Router } from '@angular/router';
   selector: 'app-collaborateur',
   template: `
   <app-header></app-header>
-  <router-outlet></router-outlet>
-  `,
+  <router-outlet></router-outlet>`,
   styles: []
 })
 export class CollaborateurComponent implements OnInit {
