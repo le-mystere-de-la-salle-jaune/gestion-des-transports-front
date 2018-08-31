@@ -1,0 +1,36 @@
+
+<div class="container">
+    <h1>Liste des véhicules</h1>
+
+    <h4>Filtres</h4>
+
+    <div class="row">
+        <div class="col-2"> 
+                <label>Immatriculation</label>
+        </div>
+        <div class="col-4"> 
+            <input type="search" [(ngModel)]=saisiImma/>
+        </div>
+    </div>
+        
+    <div class="row">
+        <div class="col-2"> 
+            <label>Marque</label>
+        </div>
+        <div class="col-4"> 
+            <input type="search" [(ngModel)]=saisiMarque/>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-3 offset-9">
+
+        </div>        
+    </div>
+
+    <app-modal-form></app-modal-form>
+
+    <app-liste-vehicules [saisiImma]=saisiImma [saisiMarque]=saisiMarque [listeVehiculesSociete]=listeVehiculesSociete
+    [optionsSelectPlaces]=optionsSelectPlaces [optionsSelectCategories]=optionsSelectCategories></app-liste-vehicules>
+
+</div>

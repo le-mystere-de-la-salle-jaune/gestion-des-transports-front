@@ -11,5 +11,6 @@ export const config = {
   apiCreerReservation: 'reserver/creer',
   apiListerVoitureReservation : 'api/listeVoitureSociete',
   reservationsApi: 'api/reservations/',
-  ajouterReservationSociete : 'api/AjouterReservation'
+  ajouterReservationSociete : 'api/AjouterReservation',
+  reservationsSocieteApi: 'api/reservationsSociete'
 };

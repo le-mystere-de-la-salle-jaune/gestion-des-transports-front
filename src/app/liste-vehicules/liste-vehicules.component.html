@@ -1,0 +1,5 @@
+<div class="row">
+    <div class="col-12 col-sm-4" *ngFor="let vh of listeVehiculesSociete | filtrerImma:saisiImma | filtrerMarque:saisiMarque">
+      <app-vehicule [vehicule]="vh"></app-vehicule>
+    </div>
+</div>

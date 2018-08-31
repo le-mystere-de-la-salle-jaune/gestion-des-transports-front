@@ -7,7 +7,15 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { TechComponent } from './tech/tech.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { AuthComponent } from './auth/auth.component';
-import { FormsModule } from "@angular/forms";
+
+import { PublierAnnonceComponent } from './publier-annonce/publier-annonce.component';
+import { AjoutItineraireComponent } from './ajout-itineraire/ajout-itineraire.component';
+import { AjoutVehiculeComponent } from './ajout-vehicule/ajout-vehicule.component';
+import { AjoutDateComponent } from './ajout-date/ajout-date.component';
+
+
+import { FormsModule,ReactiveFormsModule } from "@angular/forms";
+
 import { StatutConnecteService } from "./auth/statut-connecte.service";
 import { AuthInterceptorService } from "./auth/auth-interceptor.service";
 import { HeaderComponent } from './header/header.component';
@@ -19,12 +27,28 @@ import { ReservationService } from './services/reservation.service';
 import { PaginationService } from './services/pagination.service';
 import { FiltrerReservationPipe } from './pipes/filtrer-reservation.pipe';
 import { ReservationSocieteComponent } from './reservation-societe/reservation-societe.component';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ReservationParticulierComponent } from './reservation-particulier/reservation-particulier.component';
 import { AgmCoreModule } from '@agm/core';
 import { ReservationComponent } from './reservation/reservation.component';
 import { FiltrerPipeDate } from './pipes/FiltrePipeDate';
 import { FiltrerPipeDestination } from './pipes/FiltrePipeDestination';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { PageListeVehiculesComponent } from './page-liste-vehicules/page-liste-vehicules.component';
+import { PageListeChauffeursComponent } from './page-liste-chauffeurs/page-liste-chauffeurs.component';
+import { ModalFormComponent } from './modal-form/modal-form.component';
+import { FiltrerPipePrenom } from './pipes/filtrerPrenom.pipe';
+import { FiltrerPipeNom } from './pipes/filtrerNom.pipe';
+import { FiltrerPipeMatricule } from './pipes/filtrerMatricule.pipe';
+import { FiltrerPipeMarque } from './pipes/filtrerMarque.pipe';
+import { FiltrerPipeImma } from './pipes/filtrerImma.pipe';
+import { ChauffeurComponent } from './chauffeur/chauffeur.component';
+import { ListeChauffeursComponent } from './liste-chauffeurs/liste-chauffeurs.component';
+import { ListeVehiculesComponent } from './liste-vehicules/liste-vehicules.component';
+import { VehiculeComponent } from './vehicule/vehicule.component';
+import { AdminComponent } from './admin/admin.component';
+import { HeaderAdminComponent } from './header/header-admin.component';
+import { PageDetailsVehiculeComponent } from './page-details-vehicule/page-details-vehicule.component';
+
 
 const routes: Routes = [
 
@@ -40,7 +64,17 @@ const routes: Routes = [
       { path: 'propositions/creer', component: CollaborateurComponent },
       { path: 'annonces', component: CollabAnnoncesComponent },
       { path: 'statistiques', component: CollabStatistiquesComponent },
-
+      { path: 'annonces/creer', component: PublierAnnonceComponent},
+      { path: '', redirectTo: 'collaborateur', pathMatch: 'full'}
+    ]
+  },
+  {
+    path: 'admin',
+    component: AdminComponent, canActivate: [StatutConnecteService],
+    children: [
+  { path:'vehicules', component: PageListeVehiculesComponent},
+  { path:'vehicules/:id', component: PageDetailsVehiculeComponent},
+  { path:'chauffeurs', component: PageListeChauffeursComponent},
     ]
   },
 
@@ -53,6 +87,10 @@ const routes: Routes = [
     AppComponent,
     TechComponent,
     AuthComponent,
+    PublierAnnonceComponent,
+    AjoutItineraireComponent,
+    AjoutVehiculeComponent,
+    AjoutDateComponent,
     HeaderComponent,
     CollabReservationsComponent,
     CollabAnnoncesComponent,
@@ -63,7 +101,23 @@ const routes: Routes = [
     ReservationParticulierComponent,
     ReservationComponent,
     FiltrerPipeDate,
-    FiltrerPipeDestination    
+    FiltrerPipeDestination,
+    FiltrerPipeImma,
+    FiltrerPipeMarque,
+    FiltrerPipeMatricule,
+    FiltrerPipeNom,
+    FiltrerPipePrenom,
+    ModalFormComponent,
+    PageListeChauffeursComponent,
+    ListeChauffeursComponent,
+    ChauffeurComponent,
+    PageListeVehiculesComponent,
+    ListeVehiculesComponent,
+    VehiculeComponent,
+    AdminComponent,
+    HeaderAdminComponent,
+    PageDetailsVehiculeComponent
+
   ],
   imports: [
     BrowserModule,
@@ -75,6 +129,7 @@ const routes: Routes = [
       apiKey: "AIzaSyAI-Xa9jqwXSzHVG3IKNKgT_J74qpx3Oo8",
       libraries: ["places"]
     }),
+    ReactiveFormsModule
   ],
   providers: [
     ReservationService,

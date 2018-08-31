@@ -11,9 +11,9 @@ export class FiltrerReservationPipe implements PipeTransform {
   
   transform(value, reservationFuture) {
     if(reservationFuture == true) {
-      return value.filter(reservation => reservation.depart > this.dateNowParse)
+      return value.filter(reservation => (reservation.depart || reservation.date_debut) > this.dateNowParse)
     } else {
-      return value.filter(reservation => reservation.depart < this.dateNowParse);
+      return value.filter(reservation => (reservation.depart || reservation.date_debut)  < this.dateNowParse);
     }
   }
 }

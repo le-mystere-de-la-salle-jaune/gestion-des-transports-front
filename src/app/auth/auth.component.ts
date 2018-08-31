@@ -49,7 +49,7 @@ import { Key } from 'protractor';
             <input type="submit" mdbBtn color="primary" sclass="waves-light" mdbWavesEffect value="Se connecter" (click)="connecter()">
           </div>
           <div *ngIf="err" class="text-danger">
-            Oops, les informations saisies ne permettent pas de vous authentifier.
+            Oups, impossible de vous connecter
           </div>
         </form>
       </mdb-card-body>
@@ -74,7 +74,6 @@ export class AuthComponent implements OnInit {
       .subscribe(
         // en cas de succès, redirection vers la page /collaborateur
         col => this._router.navigate(['/collaborateur']),
-
         // en cas d'erreur, affichage d'un message d'erreur
         err =>this.err = true
       );
