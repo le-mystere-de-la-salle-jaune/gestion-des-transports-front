@@ -15,11 +15,14 @@ export class CollabReservationsComponent implements OnInit {
   listeReservationsSociete:ReservationSociete[] = [];
   reservationPassee: boolean = false;
   reservationFuture: boolean = true;
-  @ViewChild('frame') frame:any;
   reservation: Reservation;
   reservationSociete:ReservationSociete;
   afficher:boolean;
   reservationDetails: any;
+
+  // récupération de la valeur des modals
+  @ViewChild('frame') frame:any;
+  @ViewChild('frameCancel') frameCancel:any;
 
   public isCollapsed = false;
 
@@ -78,13 +81,43 @@ export class CollabReservationsComponent implements OnInit {
   this.pagedListeReservationsSociete = this.listeReservationsSociete.slice(this.pagerSociete.startIndex, this.pagerSociete.endIndex + 1);
 }
 
-  openModal(id:number) {
+  openModalDetails(id:number) {
+    console.log(this.listeReservations);
     this.listeReservations.forEach(reservation => {
       if(reservation.id == id) {
         this.reservationDetails = reservation;
+        console.log(reservation);
       }
     })
     this.afficher = true;
     this.frame.show();
   }
+
+  openModalCancel(id:number) {
+    this.listeReservations.forEach(reservation => {
+      if(reservation.id == id) {
+        this.reservationDetails = reservation;
+        this.reservation = reservation;
+        console.log(reservation)
+      }
+    })
+    this.afficher = true;
+    this.frameCancel.show();
+  }
+
+  
+  confirmCancel() {
+        this._reservationService.modifierReservation(this.reservation)
+    .subscribe(
+      (reservation) => {
+        console.log(reservation);
+      },
+      error => {
+        console.log('error', error);
+      }
+    );
+   
+   this.frameCancel.hide();
+  }
+
 }

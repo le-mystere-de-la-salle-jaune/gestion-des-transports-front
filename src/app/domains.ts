@@ -6,7 +6,8 @@ export class Reservation {
         public adresse_depart:Adresse, 
         public adresse_arriver:Adresse,
         public vehicule:string, 
-        public chauffeur:string) {        
+        public chauffeur:string,
+        public statut:any) {        
     }  
 }
 

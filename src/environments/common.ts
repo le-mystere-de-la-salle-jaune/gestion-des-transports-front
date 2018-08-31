@@ -9,5 +9,6 @@ export const config = {
   apiLogout: 'logout',
   apiAuthMe: 'me', 
   reservationsApi: 'api/reservations',
+  reservationUpdate: 'api/reservation',
   reservationsSocieteApi: 'api/reservationsSociete'
 };
