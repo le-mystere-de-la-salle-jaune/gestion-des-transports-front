@@ -3,7 +3,7 @@ pipeline {
     environment {
         GH_ORG = "le-mystere-de-la-salle-jaune"
         APP_REPO = "gestion-des-transports-front"
-        BACKEND_PROD = "https://transports-back.cleverapps.io"
+        BACKEND_PROD = "http://app-24f6f6e2-ba85-43d5-8166-24bc7eabcb95.cleverapps.io"
     }
     stages {
         stage('install') {

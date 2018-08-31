@@ -1,0 +1,79 @@
+<a class="btn btn-primary" routerLink="creer">Publier une annonce</a>
+<div class="card">
+    <div class="card-body" (click)="societe.toggle()" mdbWavesEffect>
+        <h4>Covoiturage</h4>
+    </div>
+    <div class="clearfix">
+        <div class="card card-cascade narrower">
+            <div class="px-4 mb-3 mt-4">
+                <!--Table des réservations en cours-->
+                <div class="mb-3 mt-4">
+                    <h5>Réservations en cours</h5>
+                </div>
+                <table class="table table-hover table-responsive-md mb-0">
+
+                    <!--Table head-->
+                    <thead>
+                        <tr>
+                            <th class="th-lg">Date de départ</th>
+                            <th class="th-lg">Lieu de départ</th>
+                            <th class="th-lg">Lieu de destination</th>
+                            <th class="th-lg">Nombre de voyageur</th>
+                            <th class="th-lg"></th>
+                        </tr>
+                    </thead>
+                    <!-- end Table head-->
+
+                    <!--Table body-->
+                    <tbody>
+                        <tr *ngFor="let annonce of listeAnnonce ">
+                            <td>{{annonce.horraireAnnonce.dateDepart}}</td>
+                            <td>{{annonce.itineraireAnnonce.adresseDep.locality}}</td>
+                            <td>{{annonce.itineraireAnnonce.adresseArr.locality}}</td>
+                            <td>{{annonce.vehiculeAnnonce.nbPlace}}</td>
+                            <td> 
+                                <button type="button" class="btn btn-danger" size="sm" rounded="true" data-toggle="modal" data-target="#basicExample" (click)="cancelResa(reservation.id)">Annuler</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <!--end Table body-->
+                </table>
+                <hr class="my-0">
+
+                <!--Table des historiques-->
+                <div class="mb-3 mt-4">
+
+                    <h5>Historique</h5>
+                </div>
+                <table class="table table-hover table-responsive-md mb-0">
+
+                    <!--Table head-->
+                    <thead>
+                        <tr>
+                                <th class="th-lg">Date / heure de départ</th>
+                                <th class="th-lg">Lieu de départ</th>
+                                <th class="th-lg">Lieu de destination</th>
+                                <th class="th-lg">Nombre de voyageur</th>
+                                <th class="th-lg"></th>
+                        </tr>
+                    </thead>
+                    <!--Table head-->
+
+                    <!--Table body-->
+                    <tbody>
+                        <tr *ngFor="let reservation of pagedListeReservations ">
+                            <td>{{reservation.depart}}</td>
+                            <td>{{reservation.adresse_depart.ville}}</td>
+                            <td>{{reservation.adresse_arriver.ville}}</td>
+                            <td>{{reservation.adresse_arriver.ville}}</td>
+                        </tr>
+                    </tbody>
+                    <!--Table body-->
+                </table>
+            </div>
+            <!--end Table des historiques-->
+            <hr class="my-0">
+            <!--end Bottom Table pagination-->
+        </div>
+    </div>
+</div>

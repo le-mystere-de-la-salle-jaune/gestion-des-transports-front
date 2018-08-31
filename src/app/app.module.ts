@@ -47,8 +47,9 @@ import { ListeVehiculesComponent } from './liste-vehicules/liste-vehicules.compo
 import { VehiculeComponent } from './vehicule/vehicule.component';
 import { AdminComponent } from './admin/admin.component';
 import { HeaderAdminComponent } from './header/header-admin.component';
+import { ListerAnnonceComponent } from './lister-annonce/lister-annonce.component';
+import { PageAcceuilComponent } from './page-acceuil/page-acceuil.component';
 import { PageDetailsVehiculeComponent } from './page-details-vehicule/page-details-vehicule.component';
-
 
 const routes: Routes = [
 
@@ -62,10 +63,10 @@ const routes: Routes = [
       { path: 'reservations', component: CollabReservationsComponent },
       { path: 'reservations/creer', component: ReservationComponent },
       { path: 'propositions/creer', component: CollaborateurComponent },
-      { path: 'annonces', component: CollabAnnoncesComponent },
       { path: 'statistiques', component: CollabStatistiquesComponent },
       { path: 'annonces/creer', component: PublierAnnonceComponent},
-      { path: '', redirectTo: 'collaborateur', pathMatch: 'full'}
+      { path: 'annonces', component: ListerAnnonceComponent},
+      { path: '', component: PageAcceuilComponent}
     ]
   },
   {
@@ -116,6 +117,8 @@ const routes: Routes = [
     VehiculeComponent,
     AdminComponent,
     HeaderAdminComponent,
+    ListerAnnonceComponent,
+    PageAcceuilComponent
     PageDetailsVehiculeComponent
 
   ],
