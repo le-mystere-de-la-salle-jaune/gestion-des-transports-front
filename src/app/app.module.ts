@@ -76,6 +76,7 @@ const routes: Routes = [
   { path:'vehicules', component: PageListeVehiculesComponent},
   { path:'vehicules/:id', component: PageDetailsVehiculeComponent},
   { path:'chauffeurs', component: PageListeChauffeursComponent},
+  { path: '', component: PageAcceuilComponent}
     ]
   },
 
@@ -118,7 +119,7 @@ const routes: Routes = [
     AdminComponent,
     HeaderAdminComponent,
     ListerAnnonceComponent,
-    PageAcceuilComponent
+    PageAcceuilComponent,
     PageDetailsVehiculeComponent
 
   ],

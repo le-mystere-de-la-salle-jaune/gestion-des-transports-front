@@ -17,20 +17,7 @@ import { Key } from 'protractor';
       </mdb-card-header>
       <mdb-card-body>
         <mdb-card>
-          <mdb-card-body>
-            <mdb-card-title>
-              <h4>Utilisateurs</h4>
-            </mdb-card-title>
-            <mdb-card-text>
-              Deux utilisateurs sont créés par défaut :
-              <ul>
-                <li>admin@dev.fr / superpass / ROLE_ADMINISTRATEUR, ROLE_UTILISATEUR</li>
-                <li>user@dev.fr / superpass / ROLE_UTILISATEUR</li>
-              </ul>
-              
-            </mdb-card-text>
-            
-          </mdb-card-body>
+          
         </mdb-card>
         <form>
           <div class="md-form">
