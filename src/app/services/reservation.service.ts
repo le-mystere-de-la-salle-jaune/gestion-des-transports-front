@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { Reservation, CreerReservation, Adresse, ReserverAfficherAnnonce, ReserverAfficherAnnonceUtils, DateDebutFin, ReserverAfficherVehicule, ReserverVehicule } from '../domains';
+
 import { environment } from '../../environments/environment';
 
 import { Vehicule } from '../reservation-societe/class';
 
 import { map, filter } from 'rxjs/operators';
 import { ReservationSociete } from './../domains';
+import { tap } from 'rxjs/internal/operators/tap';
 
 
 @Injectable()
@@ -22,7 +24,20 @@ export class ReservationService {
 
     const reservation$ = this._http.get(`${environment.baseUrl}${environment.reservationsApi}/${sessionStorage.getItem("email")}`)
       .pipe(
-        map((reservationsServeur: any[]) => reservationsServeur.map( el => new Reservation(el.id, el.depart, new Adresse(el.adresse_depart.numeroVoie, el.adresse_depart.designationVoie, el.adresse_depart.ville, el.adresse_depart.codePostal, el.adresse_depart.pays), new Adresse(el.adresse_arriver.numeroVoie, el.adresse_arriver.designationVoie, el.adresse_arriver.ville, el.adresse_arriver.codePostal, el.adresse_arriver.pays), el.vehicule, el.chauffeur)))
+        map((reservationsServeur: any[]) => reservationsServeur.map( 
+
+          el => { 
+            let statut;
+            let dateNow = new Date();
+            let dateNowParse = dateNow.toJSON();
+            if (el.statut == true && el.depart < dateNowParse) {
+              statut = 'Terminé';
+            } else if (el.statut == false) {
+              statut = 'Annulé';
+            } else {
+              statut = true;
+            }
+            return new Reservation(el.id, el.depart, new Adresse(el.adresse_depart.numeroVoie, el.adresse_depart.designationVoie, el.adresse_depart.ville, el.adresse_depart.codePostal, el.adresse_depart.pays), new Adresse(el.adresse_arriver.numeroVoie, el.adresse_arriver.designationVoie, el.adresse_arriver.ville, el.adresse_arriver.codePostal, el.adresse_arriver.pays), el.vehicule, el.chauffeur, statut)}))
       );
       return reservation$;
       
@@ -79,5 +94,18 @@ export class ReservationService {
       
   }
 
+  private modifReservation:Subject<Reservation> = new BehaviorSubject(new Reservation(undefined, undefined, undefined, undefined, undefined, undefined, undefined));
+  get modifReservation$(): Observable<Reservation> {
+    return this.modifReservation.asObservable();
+  }
+  modifierReservation(reservation:Reservation): Observable<Reservation> {
+    console.log("modifierReservation")
+    console.log(reservation)
+    return this._http.put(`${environment.baseUrl}${environment.reservationUpdate}/${reservation.id}`, reservation)
+    .pipe(
+      map((el: any) => new Reservation(el.id, el.depart, new Adresse(el.adresse_depart.numeroVoie, el.adresse_depart.designationVoie, el.adresse_depart.ville, el.adresse_depart.codePostal, el.adresse_depart.pays), new Adresse(el.adresse_arriver.numeroVoie, el.adresse_arriver.designationVoie, el.adresse_arriver.ville, el.adresse_arriver.codePostal, el.adresse_arriver.pays), el.vehicule, el.chauffeur, el.statut))
+      , tap(modifiedReservation => this.modifReservation.next(modifiedReservation))
+    );
+  }
 
 }
