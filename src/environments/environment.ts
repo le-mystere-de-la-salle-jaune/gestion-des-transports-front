@@ -10,6 +10,7 @@ export const environment = Object.assign({
 
   baseUrl: `${backEndUrl}`,
   publierAnnonceUrl: `${backEndUrl}api/publier_annonce`,
+
 }, config);
 
 /*
