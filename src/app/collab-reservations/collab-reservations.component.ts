@@ -42,7 +42,7 @@ export class CollabReservationsComponent implements OnInit {
   }
 
   reserver() {
-    this.router.navigate(['/collaborateur/propositions/creer'])
+    this.router.navigate(['/collaborateur/reservations/creer'])
   }
   ngOnInit() {
     this._reservationService.listerReservations().subscribe((reservations: Reservation[]) => {

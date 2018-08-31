@@ -15,7 +15,7 @@ export class ModalFormComponent {
   optionsSelectPlaces:Array<number>=[]
   optionsSelectCategories:Array<string>=[]
 
-  vehicule:Vehicule=new Vehicule(undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined)
+  vehicule:Vehicule=new Vehicule(undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined)
 
   @ViewChild('frame')frame:any
   
@@ -49,7 +49,7 @@ export class ModalFormComponent {
     this.vehicule.societe = true
     this._vh.ajouterVehicule(this.vehicule)
     this.frame.hide()
-    //location.reload()
+    location.reload()
   }
 
   cancel()
