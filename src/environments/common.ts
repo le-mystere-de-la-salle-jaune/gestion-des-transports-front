@@ -10,7 +10,7 @@ export const config = {
   apiAuthMe: 'me',
   apiCreerReservation: 'reserver/creer',
   apiListerVoitureReservation : 'api/listeVoitureSociete',
-  reservationsApi: 'api/reservations/',
+  reservationsApi: 'api/reservations',
   ajouterReservationSociete : 'api/AjouterReservation',
   reservationsSocieteApi: 'api/reservationsSociete'
 };
