@@ -9,5 +9,10 @@ export const config = {
   apiLogout: 'logout',
   apiAuthMe: 'me', 
   reservationsApi: 'api/reservations',
-  reservationsSocieteApi: 'api/reservationsSociete'
+  reservationsSocieteApi: 'api/reservationsSociete',
+  apiVehicule : 'api/vehicules',
+  apiVehiculeSociete : 'api/vehicules/societe',
+  apiCollaborateur : 'api/collaborateurs',
+  apiCollaborateurChauffeur : 'api/collaborateurs/chauffeurs'
+
 };

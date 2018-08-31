@@ -22,13 +22,13 @@
     </div>
     <div class="col-3">
         <div style="margin-bottom: 12%">
-            <button type="submit" [disabled]="vehiculeEstEnReparation()" #estEnReparation class="btn btn-default pull-right btn-block" (click)="mettreEnService()">Mettre en service</button>
+            <button type="button" [disabled]="vehiculeEstEnReparation()" #estEnReparation class="btn btn-default pull-right btn-indigo btn-block" (click)="mettreEnService()">Mettre en service</button>
         </div>  
         <div style="margin-bottom: 12%">
-            <button type="submit" [disabled]="vehiculeEstHorsService()" #estHorsService class="btn btn-default pull-right btn-block" (click)="mettreEnReparation()">Mettre en réparation</button>
+            <button type="button" [disabled]="vehiculeEstHorsService()" #estHorsService class="btn btn-default pull-right btn-yellow btn-block" (click)="mettreEnReparation()">Mettre en réparation</button>
         </div>
         <div>
-            <button type="submit" [disabled]="vehiculeEstEnService()" #estEnService class="btn btn-default pull-right btn-red btn-block" (click)="mettreHorsService()">Hors service</button>
+            <button type="button" [disabled]="vehiculeEstEnService()" #estEnService class="btn btn-default pull-right btn-red btn-block" (click)="mettreHorsService()">Hors service</button>
         </div>  
     </div>
 </div>
